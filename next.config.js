@@ -18,8 +18,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'www.graemepirie.com',
+        protocol: 'http',
+        hostname: 'localhost',
         port: '',
         pathname: '/**',
       },

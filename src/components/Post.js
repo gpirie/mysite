@@ -8,12 +8,13 @@ import {getDate} from "../utils/utils";
 
 export default function Post({post, featuredMedia}) {
 
+    console.log(featuredMedia);
     return (
         <div className="card mb-3" style={{maxWidth: "540px"}}>
             <div className="row g-0">
                 <div className="col-md-4">
                     <Link href={`/posts/${post.slug}`}>
-                        <Image src={featuredMedia["media_details"].sizes.medium["source_url"]} width={180} height={120} alt={featuredMedia["alt_text"]}/>
+                        <Image src={featuredMedia["media_details"].sizes.medium["source_url"]} width={featuredMedia["media_details"].sizes.medium["width"]} height={featuredMedia["media_details"].sizes.medium["height"]} alt={featuredMedia["alt_text"]}/>
                     </Link>
                 </div>
                 <div className="col-md-8">

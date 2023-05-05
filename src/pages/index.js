@@ -1,28 +1,19 @@
 import Head from 'next/head';
 
-import { getPosts } from '../utils/wordpress';
+import {getPage, getPosts} from '../utils/wordpress';
 
-import Post from '../components/Post';
+import Page from '../components/Page';
 
-export default function Home({ posts }) {
-  const jsxPosts = posts.map((post) => {
-    const featuredMedia = post['_embedded']['wp:featuredmedia'][0];
-    return <Post post={post} featuredMedia={featuredMedia} key={post.id} />;
-  });
-
-  return (
-      <>
-        {jsxPosts}
-      </>
-  );
+export default function Home({ pages }) {
+  return <Page page={pages} key={pages.id} />;
 }
 
-export async function getStaticProps({ params }) {
-  const posts = await getPosts();
+export async function getStaticProps() {
+  const pages = await getPage('home');
 
   return {
     props: {
-      posts,
+      pages,
     },
     revalidate: 10, // In seconds
   };

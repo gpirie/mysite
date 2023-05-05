@@ -1,15 +1,29 @@
 import {useEffect, useState} from "react";
 
-const BASE_URL = 'https://graemepirie.com/wp-json';
+const BASE_URL = 'http://localhost/wp-json';
 
 export async function getSiteInfo() {
     const siteInfo = await fetch( BASE_URL );
-    console.log(siteInfo.json);
     return await siteInfo.json();
 }
 
-export const SiteData = (props) => {
-    const [siteData, setSiteData] = useState();
+export async function getStaticPaths() {
+    const response = fetch( BASE_URL )
+    const userData = await response.json()
+
+    // Getting the unique key of the user from the response
+    // with the map method of JavaScript.
+    const uniqueId = userData.map((data) => {
+        return data.name
+    })
+
+    return {
+        paths: {
+            params: {
+                uniqueId: uniqueId.toString()
+            }
+        }
+    }
 }
 
 export async function getPosts() {
@@ -23,12 +37,26 @@ export async function getPost(slug) {
     return postArray.length > 0 ? postArray[0] : null;
 }
 
+
+export async function getPages() {
+    const pagesRes = await fetch(BASE_URL + '/wp/v2/pages?_embed');
+    return await pagesRes.json();
+}
+
+export async function getPage(slug) {
+    const pages = await getPages();
+    const pageArray = pages.filter((page) => page.slug === slug);
+    return pageArray.length > 0 ? pageArray[0] : null;
+}
+
 export async function getSlugs(type) {
     let elements = [];
     switch (type) {
         case 'posts':
             elements = await getPosts();
             break;
+        case 'pages':
+            elements = await getPages();
     }
     return elements.map((element) => {
         return {
