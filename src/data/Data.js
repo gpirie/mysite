@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
 
-const BASE_URL = 'https://graemepirie.com/wp-json';
+const BASE_URL = 'http:/localhost:8000/wp-json';
 
-export const SiteDataFetch = (props) => {
+export const SiteDataFetch = () => {
 
     const [siteData, setSiteData] = useState([])
 

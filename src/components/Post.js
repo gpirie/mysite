@@ -8,7 +8,6 @@ import {getDate} from "../utils/utils";
 
 export default function Post({post, featuredMedia}) {
 
-    console.log(featuredMedia);
     return (
         <div className="card mb-3" style={{maxWidth: "540px"}}>
             <div className="row g-0">
