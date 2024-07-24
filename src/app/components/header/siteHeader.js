@@ -8,14 +8,12 @@ export default async function siteHeader() {
 
     const logo = await getSiteLogoUrl();
 
-    console.log(logo)
-
     return (
         <>
 
             <header className={classes.siteHeader}>
 
-                <Link href="/">
+                <Link className={classes.siteLogo} href="/">
                     <Image src={logo.url} alt={logo.alt} height={logo.height} width={logo.width} />
                 </Link>
 
