@@ -2,6 +2,11 @@
     background-color: var(--primary-colour);
     color: var(--text-colour);
     text-align: center;
+
+    @media (prefers-color-scheme: dark) {
+        background-color: var(--primary-colour-dark);
+        color: var(--text-colour-dark);
+    }
 }
 
 .logo {

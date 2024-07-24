@@ -2,8 +2,8 @@ import classes from "./siteFooter.module.scss";
 
 export default function siteFooter(props) {
     return (
-        <div className={classes.siteFooter}>
+        <footer>
             <small>&copy; {props.name} {new Date().getFullYear()}</small>
-        </div>
+        </footer>
     );
 }

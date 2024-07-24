@@ -1,8 +1,24 @@
-const BASE_URL = 'http://localhost:8000/wp-json';
+const BASE_URL = process.env.BASE_URL
 
 export async function getSiteInfo() {
     const siteInfo = await fetch( BASE_URL );
     return await siteInfo.json();
+}
+
+export async function getSiteLogoUrl() {
+    const siteInfo = await getSiteInfo();
+
+    let siteLogo = await fetch( BASE_URL + 'wp/v2/media/' + siteInfo.site_logo);
+    siteLogo = await siteLogo.json();
+
+    // Extract relevant data from the siteLogo object
+    return {
+        url: siteLogo.source_url,
+        alt: siteLogo.alt_text,
+        width: siteLogo.media_details.width,
+        height: siteLogo.media_details.height,
+        // Add any other necessary properties you might need
+    };
 }
 
 export async function getStaticPaths() {

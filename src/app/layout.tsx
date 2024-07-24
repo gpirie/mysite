@@ -5,6 +5,10 @@ import "@/styles/globals.scss";
 import Header from "@/components/header/siteHeader"
 import Footer from "@/components/footer/siteFooter"
 
+// Styles
+import "@/styles/reset.scss";
+import "@/styles/globals.scss";
+
 type Props = {
     params: { slug: string }
     searchParams: { [key: string]: string | string[] | undefined }
@@ -13,15 +17,16 @@ type Props = {
 export async function generateMetadata( { params, searchParams }: Props, parent: ResolvingMetadata ): Promise<Metadata> {
 
     // fetch data
-    //TODO: remove hardcoded data for seo
-    //const pageData = await fetchSinglePost('home')
+    const siteInfo = await fetch(
+        process.env.BASE_URL
+    )
+    const sitemeta = await siteInfo.json();
 
+    // Return data
     return {
-        title: 'E-FWD | Where energy\'s forward thinkers come together', //pageData?.seo?.title,
-        description: 'E-FWD | Where energy\'s forward thinkers come together', //pageData?.seo?.metaDesc,
-        icons: {
-            icon: 'logos/favicon.svg'
-        },
+        title: sitemeta.name,
+        description: sitemeta.description,
+        icons: sitemeta.site_icon_url,
     }
 }
 
@@ -30,9 +35,6 @@ const RootLayout = async ({children}: {children: React.ReactNode}) => {
     return (
         <>
             <html lang="en">
-            <head>
-                <title></title>
-            </head>
             <body>
                 <Header />
                 {children}

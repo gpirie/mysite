@@ -1,30 +1,25 @@
 import Link from "next/link";
-import Head from "next/head";
-
 import classes from "./siteHeader.module.scss";
 
-export default function siteHeader(props) {
+import { getSiteLogoUrl } from "@/utils/wordpress";
+import Image from "next/image";
 
-    console.log(props);
+export default async function siteHeader() {
+
+    const logo = await getSiteLogoUrl();
+
+    console.log(logo)
+
     return (
         <>
-        <Head>
-            <title>{props.name}</title>
-            <meta
-                name="description"
-                content="Keep up to date with the latest trends in tech"
-            />
-            <link rel="icon" href={props.icon} />
-            {/* You can add more metadata here, like open graph tags for social media, etc */}
-        </Head>
 
-        <div className={classes.siteHeader}>
+            <header className={classes.siteHeader}>
 
-            <Link href="/">
-                {props.name}
-            </Link>
+                <Link href="/">
+                    <Image src={logo.url} alt={logo.alt} height={logo.height} width={logo.width} />
+                </Link>
 
-        </div>
+            </header>
         </>
     );
 }

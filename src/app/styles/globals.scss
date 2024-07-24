@@ -2,18 +2,26 @@
 
 :root {
     --primary-colour: #f864bf;
+    --primary-colour-dark: #4b0f36;
     --secondary-colour: #90b494;
     --font-heading: 'Lobster', cursive;
     --font-body: 'Barlow', 'Helvetica Neue', Helvetica, Arial,  sans-serif;
 
     --body-bg: #e3e3e3;
+    --body-bg-dark: #2e2e2e;
     --text-colour: #090808;
+    --text-colour-dark: #ccc;
 }
 
 body {
-    background-color: #e3e3e3;
-    color: #4E3838;
+    background-color: var(--body-bg);
+    color: var(--text-colour);
     font-family: var(--font-body);
+
+    @media (prefers-color-scheme: dark) {
+        background-color: var(--body-bg-dark);
+        color: var(--text-colour-dark);
+    }
 
     .content {
         margin-left: auto;
