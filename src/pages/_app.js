@@ -4,19 +4,16 @@ import '../styles/reset.scss';
 import '../styles/globals.scss';
 import App from 'next/app';
 import Layout from '../components/Layout';
-import {headers} from "next/headers";
 
 export default class MyApp extends App {
 
-    static async getInitialProps({Component, ctx}) {
+    static async getInitialProps() {
 
-        const BASE_URL = 'http://localhost/wp-json';
+        const BASE_URL = 'http://localhost:8000/wp-json';
         const siteInfo = await fetch(
             BASE_URL
         )
         const sitemeta = await siteInfo.json()
-
-        console.log(sitemeta);
 
         return {
             name: sitemeta.name,

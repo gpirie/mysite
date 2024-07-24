@@ -1,6 +1,4 @@
-import {useEffect, useState} from "react";
-
-const BASE_URL = 'http://localhost/wp-json';
+const BASE_URL = 'http://localhost:8000/wp-json';
 
 export async function getSiteInfo() {
     const siteInfo = await fetch( BASE_URL );
