@@ -7,19 +7,22 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "incremental": true,
-    "module": "esnext",
     "esModuleInterop": true,
+    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "incremental": true,
+    "baseUrl": ".",
     "paths": {
       "@/components/*": ["src/app/components/*"],
       "@/styles/*": ["src/app/styles/*"],
-      "@/utils/*": ["src/app/utils/*"]
+      "@/utils/*": ["src/app/utils/*"],
+      "@/data/*": ["src/app/data/*"]
     },
     "plugins": [
       {

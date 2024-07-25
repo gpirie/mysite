@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+const strictMode = 'development' === process.env.NODE_ENV;
+
 const nextConfig = {
   async headers() {
     return [
@@ -9,25 +12,25 @@ const nextConfig = {
           { key: "Access-Control-Allow-Credentials", value: "true" },
           { key: "Access-Control-Allow-Origin", value: "https://graemepirie.com" },
           { key: "Access-Control-Allow-Methods", value: "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
-          { key: "Access-Control-Allow-Headers", value: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" },
+          { key: "Access-Control-Allow-Headers", value: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" }
         ]
       }
     ]
   },
-  reactStrictMode: true,
+  reactStrictMode: strictMode,
   images: {
     domains: [
-      'localhost',
+      'localhost'
     ],
     remotePatterns: [
       {
         protocol: 'http',
         hostname: 'localhost',
         port: '',
-        pathname: '/**',
-      },
-    ],
-  },
+        pathname: '/**'
+      }
+    ]
+  }
 }
 
 module.exports = nextConfig

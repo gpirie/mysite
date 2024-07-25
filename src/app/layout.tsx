@@ -1,9 +1,11 @@
 import { Metadata, ResolvingMetadata } from 'next';
-import "@/styles/globals.scss";
 
 // Components
 import Header from "@/components/header/siteHeader"
 import Footer from "@/components/footer/siteFooter"
+
+// Functions
+import {fetchMenus} from "@/data/Data.ts";
 
 // Styles
 import "@/styles/reset.scss";
@@ -32,11 +34,13 @@ export async function generateMetadata( { params, searchParams }: Props, parent:
 
 const RootLayout = async ({children}: {children: React.ReactNode}) => {
 
+    const headerMenu =  await fetchMenus('MAIN_MENU');
+
     return (
         <>
             <html lang="en">
             <body>
-                <Header />
+                <Header menu={headerMenu} />
                 {children}
                 <Footer />
             </body>
