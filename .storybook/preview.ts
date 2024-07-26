@@ -1,5 +1,5 @@
-/** @type { import('@storybook/react').Preview } */
-const preview = {
+import type { Preview } from '@storybook/react';
+const preview: Preview = {
   parameters: {
     controls: {
       matchers: {
@@ -8,6 +8,7 @@ const preview = {
       },
     },
   },
+  tags: ['autodocs'],
 };
 
 export default preview;
