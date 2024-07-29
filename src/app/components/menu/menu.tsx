@@ -9,7 +9,6 @@ type Props = {
 }
 
 const NavigationMenu = ( { menu } : Props ) => {
-    console.log(menu);
     return (
         <ol>
             {

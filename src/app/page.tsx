@@ -1,4 +1,21 @@
-// `app/page.tsx` is the UI for the `/` URL
-export default function Page() {
-    return <h1>Hello, Home page!</h1>
+// Imports
+import {fetchSinglePage} from "@/data/pages/pages";
+import {parseHTML} from "@/utils/utils";
+
+const HomePage = async () => {
+
+    // Get Page data
+    const pageData = await fetchSinglePage('home');
+
+    return (
+        <>
+            <h1>{pageData?.title}</h1>
+
+            {
+                parseHTML(pageData.content)
+            }
+        </>
+    )
 }
+
+export default HomePage;

@@ -36,39 +36,43 @@ async function fetchGraphQL(
     return await response.json();
 }
 
-/**
- * Fetches all menu items via menu name.
- * @param menuName The name of the target menu.
- * @returns {Promise<*>}
- */
-export const fetchMenus = async ( menuName: string ) => {
-
+export const fetchSinglePage = async ( slug: string ) => {
     const query = `
-        query {
-          menuItems(where: {location: ${ menuName }}) {
-            nodes {
-              id        
-              label        
-              uri
-              connectedNode {
-                node {
-                    ... on Category {
-                        slug
-                        count
+             query Pages($slug: String!) {
+              nodeByUri(uri: $slug) {
+                __typename
+                ... on Page {
+                  date
+                  content
+                  title
+                  id
+                  featuredImage {
+                    node {
+                      id
+                      uri
+                      title
+                      sizes
+                      altText
+                      srcSet
+                      link
+                      mediaDetails {
+                        height
+                        width
+                      }
                     }
+                  }
                 }
               }
-            }
-          }
-        }             
-    `;
-
+             }`;
     try {
-        const data = await fetchGraphQL( query );
+        const data = await fetchGraphQL(query, { slug: slug });
 
-        return data?.data?.menuItems?.nodes;
-    }
-    catch (error) {
-        console.error('Error fetching WordPress Menus:', error);
+        console.log(data?.data?.nodeByUri?.date)
+
+        return data?.data?.nodeByUri;
+
+
+    } catch (error) {
+        console.error('Error fetching WordPress Event:' + slug, error);
     }
 }
