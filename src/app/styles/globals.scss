@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Barlow:ital,wght@0,400;1,300&display=swap');
+
+:root {
+    --primary-colour: #ff00ff;
+    --primary-colour-dark: #4b0f36;
+    --secondary-colour: #90b494;
+    --font-heading: 'Lobster', cursive;
+    --font-body: 'Barlow', 'Helvetica Neue', Helvetica, Arial,  sans-serif;
+
+    --body-bg: #e3e3e3;
+    --body-bg-dark: #2e2e2e;
+    --text-colour: #090808;
+    --text-colour-dark: #ccc;
+}
+
+body {
+    background-color: var(--body-bg);
+    color: var(--text-colour);
+    font-family: var(--font-body);
+
+    @media (prefers-color-scheme: dark) {
+        background-color: var(--body-bg-dark);
+        color: var(--text-colour-dark);
+    }
+
+    .content {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1400px;
+        width: 90%;
+    }
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+}
