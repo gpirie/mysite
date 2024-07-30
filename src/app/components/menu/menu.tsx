@@ -1,16 +1,20 @@
 // Imports
 import Link from "next/link";
 
+// Styles
+import styles from "./menu.module.scss";
+
 // Types
 import { Menu } from "types";
 
 type Props = {
+    styleClass: string;
     menu: Menu[];
 }
 
-const NavigationMenu = ( { menu } : Props ) => {
+const NavigationMenu = ( { styleClass, menu } : Props ) => {
     return (
-        <ol>
+        <ol className={styles[styleClass]}>
             {
                 menu?.map((e, index) => {
                     return (

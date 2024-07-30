@@ -1,9 +1,18 @@
-import classes from "./siteFooter.module.scss";
+// Data
+import {fetchSiteSettings} from "@/data/Data";
 
-export default function siteFooter(props) {
+// Styles
+import styles from "./siteFooter.module.scss";
+
+const siteFooter = async () => {
+
+    const settings = await fetchSiteSettings();
+
     return (
-        <footer>
-            <small>&copy; {props.name} {new Date().getFullYear()}</small>
+        <footer className={styles['site-footer']}>
+            <small>&copy; {settings.title} {new Date().getFullYear()}</small>
         </footer>
     );
 }
+
+export default siteFooter;

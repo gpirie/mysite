@@ -72,3 +72,35 @@ export const fetchMenus = async ( menuName: string ) => {
         console.error('Error fetching WordPress Menus:', error);
     }
 }
+
+/**
+ * Fetches general settings
+ * @returns {Promise<*>}
+ */
+export const fetchSiteSettings = async () => {
+
+    const query = `
+        query {
+          generalSettings {
+            dateFormat
+            description
+            email
+            language
+            startOfWeek
+            timeFormat
+            timezone
+            title
+            url
+          }
+        }             
+    `;
+
+    try {
+        const data = await fetchGraphQL( query );
+
+        return data?.data?.generalSettings;
+    }
+    catch (error) {
+        console.error('Error fetching WordPress Menus:', error);
+    }
+}

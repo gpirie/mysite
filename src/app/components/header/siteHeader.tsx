@@ -1,3 +1,9 @@
+// Imports
+import Link from "next/link";
+
+// Data
+import {fetchSiteSettings} from "@/data/Data";
+
 // Components
 import NavigationMenu from "@/components/menu/menu";
 
@@ -11,11 +17,20 @@ type Props = {
     menu: Menu[];
 }
 
-const siteHeader = ( { menu } : Props ) => {
+const siteHeader = async ( { menu } : Props ) => {
+
+    const settings = await fetchSiteSettings();
 
     return (
         <header className={classes.siteHeader}>
-            <NavigationMenu menu={menu} />
+
+            <h1 className={classes['title']}>
+                <Link href="/">
+                    {settings.title}
+                </Link>
+            </h1>
+
+            <NavigationMenu styleClass="header-menu" menu={menu} />
         </header>
     );
 }
