@@ -6,7 +6,7 @@ import Header from "@/components/header/siteHeader"
 import Footer from "@/components/footer/siteFooter"
 
 // Functions
-import {fetchMenus} from "@/data/Data.ts";
+import {fetchMenus, fetchSiteSettings} from "@/data/Data";
 
 // Styles
 import "@/styles/reset.scss";
@@ -37,13 +37,15 @@ const RootLayout = async ({children}: {children: React.ReactNode}) => {
 
     const headerMenu =  await fetchMenus('MAIN_MENU');
 
+    const settings = await fetchSiteSettings();
+
     return (
         <>
             <html lang="en">
             <body>
-                <Header menu={headerMenu} />
+                <Header title={settings.title} menu={headerMenu} />
                 {children}
-                <Footer />
+                <Footer title={settings.title} />
             </body>
             </html>
         </>

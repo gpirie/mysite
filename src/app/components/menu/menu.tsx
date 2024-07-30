@@ -14,7 +14,7 @@ type Props = {
 
 const NavigationMenu = ( { styleClass, menu } : Props ) => {
     return (
-        <ol className={styles[styleClass]}>
+        <ol role="navigation" className={styles[styleClass]}>
             {
                 menu?.map((e, index) => {
                     return (
