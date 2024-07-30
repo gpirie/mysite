@@ -1,4 +1,12 @@
-.siteFooter {
+.site-footer {
     background-color: var(--secondary-colour);
+    color: var(--text-colour);
+    padding-bottom: 2rem;
+    padding-top: 2rem;
     text-align: center;
+
+    @media (prefers-color-scheme: dark) {
+        background-color: var(--secondary-colour-dark);
+        color: var(--text-colour-dark);
+    }
 }

@@ -1,3 +1,4 @@
+import React from "react";
 import { Metadata, ResolvingMetadata } from 'next';
 
 // Components

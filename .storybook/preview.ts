@@ -5,8 +5,7 @@ import "@/styles/reset.scss";
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
-    backgrounds: {
+     backgrounds: {
       default: 'light',
       values: [
         {
