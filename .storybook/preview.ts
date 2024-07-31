@@ -24,7 +24,7 @@ const preview: Preview = {
         options: {
             storySort: {
                 method: 'alphabetical',
-                order: ['UI'],
+                order: ['UI', ['Header', 'Footer']],
                 locales: 'en-GB',
             }
         }
