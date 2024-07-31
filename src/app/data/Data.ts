@@ -26,6 +26,7 @@ async function fetchGraphQL(
     };
 
     // WPGraphQL Plugin must be enabled
+    // @ts-ignore
     const response = await fetch( GRAPHQL_API_URL, {
         method: 'POST',
         headers,
