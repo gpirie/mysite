@@ -30,8 +30,7 @@ async function fetchGraphQL(
         method: 'POST',
         headers,
         body: JSON.stringify({ query, variables }),
-        cache: caching,
-        crossDomain: true
+        cache: caching
     });
 
     return await response.json();
@@ -103,5 +102,46 @@ export const fetchSiteSettings = async () => {
     }
     catch (error) {
         console.error('Error fetching WordPress Menus:', error);
+    }
+}
+
+export const fetchSinglePage = async ( slug: string ) => {
+    const query = `
+             query Pages($slug: String!) {
+              nodeByUri(uri: $slug) {
+                __typename
+                ... on Page {
+                  date
+                  content
+                  title
+                  id
+                  featuredImage {
+                    node {
+                      id
+                      uri
+                      title
+                      sizes
+                      altText
+                      srcSet
+                      link
+                      mediaDetails {
+                        height
+                        width
+                      }
+                    }
+                  }
+                }
+              }
+             }`;
+    try {
+        const data = await fetchGraphQL(query, { slug: slug });
+
+        console.log(data?.data?.nodeByUri?.date)
+
+        return data?.data?.nodeByUri;
+
+
+    } catch (error) {
+        console.error('Error fetching WordPress Event:' + slug, error);
     }
 }
