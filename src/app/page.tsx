@@ -1,5 +1,5 @@
 // Imports
-import {fetchSinglePage} from "@/data/pages/pages";
+import {fetchSinglePage} from "@/data/Data";
 import {parseHTML} from "@/utils/utils";
 
 const HomePage = async () => {
