@@ -1,42 +1,34 @@
 import type { Preview } from "@storybook/react";
 
-import "@/styles/globals.scss";
 import "@/styles/reset.scss";
+import "@/styles/globals.scss";
 
 const preview: Preview = {
-  parameters: {
-     backgrounds: {
-      default: 'light',
-      values: [
-        {
-          name: 'events',
-          value: '#070a24',
+    parameters: {
+        actions: { argTypesRegex: "^on[A-Z].*" },
+        backgrounds: {
+            default: 'light',
+            values: [
+                {
+                    name: 'events',
+                    value: '#070a24',
+                }
+            ]
+        },
+        controls: {
+            matchers: {
+                color: /(background|color)$/i,
+                date: /Date$/,
+            },
+        },
+        options: {
+            storySort: {
+                method: 'alphabetical',
+                order: ['UI'],
+                locales: 'en-GB',
+            }
         }
-      ]
     },
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/,
-      },
-    },
-  },
 };
 
 export default preview;
-
-// import type { Preview } from '@storybook/react';
-//
-// const preview: Preview = {
-//   parameters: {
-//     controls: {
-//       matchers: {
-//         color: /(background|color)$/i,
-//         date: /Date$/i,
-//       },
-//     },
-//   },
-//   tags: ['autodocs'],
-// };
-//
-// export default preview;
