@@ -14,14 +14,14 @@ const menuData = [
     {
         id: 2,
         label: 'Connect',
-        uri: '/contact',
+        uri: 'https://www.linkedin.com/in/graeme-pirie-08625275/',
     },
     // Add more items as needed
 ];
 
 // Story config
 const meta: Meta<typeof Header> = {
-    title: 'Components/Blocks/Header',
+    title: 'UI/Header',
     component: Header,
     parameters: {
         nextjs: {
