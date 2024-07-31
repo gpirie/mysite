@@ -30,7 +30,8 @@ async function fetchGraphQL(
         method: 'POST',
         headers,
         body: JSON.stringify({ query, variables }),
-        cache: caching
+        cache: caching,
+        crossDomain: true
     });
 
     return await response.json();

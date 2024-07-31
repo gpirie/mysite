@@ -1,5 +1,5 @@
 import React from "react";
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 
 // Components
 import Header from "@/components/header/siteHeader"
@@ -12,16 +12,12 @@ import {fetchMenus, fetchSiteSettings} from "@/data/Data";
 import "@/styles/reset.scss";
 import "@/styles/globals.scss";
 
-type Props = {
-    params: { slug: string }
-    searchParams: { [key: string]: string | string[] | undefined }
-}
 
-export async function generateMetadata( { params, searchParams }: Props, parent: ResolvingMetadata ): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
 
     // fetch data
     const siteInfo = await fetch(
-        process.env.BASE_URL
+        process.env.BASE_URL as string
     )
     const sitemeta = await siteInfo.json();
 
