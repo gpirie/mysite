@@ -39,7 +39,7 @@ const RootLayout = async ({children}: {children: React.ReactNode}) => {
         <>
             <html lang="en">
             <body>
-                <Header title={settings.title} menu={headerMenu} />
+                <Header title={settings.title} tagline={settings.description} menu={headerMenu} />
                 {children}
                 <Footer title={settings.title} />
             </body>
