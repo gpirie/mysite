@@ -3,17 +3,51 @@
     @import "@/styles/mixins.scss";
 
     @include content-wrap;
+    @include element-spacing;
 
-    background-color: var(--primary-colour);
+    border-bottom: 3px solid var(--primary-colour);
     color: var(--text-colour);
     display: flex;
     justify-content: space-between;
     padding-bottom: 2rem;
     padding-top: 2rem;
-    text-align: center;
 
     @media (prefers-color-scheme: dark) {
         background-color: var(--primary-colour-dark);
         color: var(--text-colour-dark);
     }
+
+    .logo {
+        color: var(--primary-colour);
+        text-transform: uppercase;
+    }
+
+    .title,
+    .description {
+        display: block;
+    }
+
+    .description {
+        font-variation-settings: 'ital' 0, 'wdth' 100, 'wght' 100;
+    }
+
+    .header-nav {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+
+        svg {
+            cursor: pointer;
+
+            @media (max-width: 551px) {
+                position: relative;
+                z-index: 2000;
+            }
+
+            @media (min-width: 552px) {
+                display: none;
+            }
+        }
+    }
+
 }
