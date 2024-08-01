@@ -22,14 +22,15 @@ const NavigationMenu = ( { menu, open } : Props ) => {
                         return (
                             <li className={`${styles['header-menu__item']}`} key={e.id}>
                                 <Link
-                                    className={e.cssClasses ? e.cssClasses : undefined}
-                                    target={e.target !== null && e.target !== undefined ? e.target : undefined}
+                                    className={e.cssClasses || undefined}
+                                    target={e.target || undefined}
                                     href={e.uri}>
                                     {e.label}
                                 </Link>
                             </li>
                         )
                     }
+                    return null; // Handle cases where e.uri is undefined
                 })
             }
         </ol>

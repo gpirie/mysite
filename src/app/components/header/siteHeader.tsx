@@ -21,7 +21,7 @@ type Props = {
     tagline: string;
 };
 
-const SiteHeader = ({ menu, title, tagline }: Props) => {
+const Header = ({ menu, title, tagline }: Props) => {
 
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -52,4 +52,4 @@ const SiteHeader = ({ menu, title, tagline }: Props) => {
     );
 };
 
-export default SiteHeader;
+export default Header;
