@@ -8,22 +8,26 @@ import styles from "./menu.module.scss";
 import { Menu } from "types";
 
 type Props = {
-    styleClass: string;
     menu: Menu[];
+    open: boolean;
 }
 
-const NavigationMenu = ( { styleClass, menu } : Props ) => {
+const NavigationMenu = ( { menu, open } : Props ) => {
+
     return (
-        <ol role="navigation" className={styles[styleClass]}>
+        <ol role="navigation" className={`${styles['header-menu']} ${open ? styles['header-menu--open'] : styles['header-menu--close']}`}>
             {
-                menu?.map((e, index) => {
+                menu?.map((e) => {
                     if (e.uri) {
                         return (
-                            <Link
-                                key={index}
-                                href={e.uri}>
-                                {e.label}
-                            </Link>
+                            <li className={`${styles['header-menu__item']}`} key={e.id}>
+                                <Link
+                                    className={e.cssClasses ? e.cssClasses : undefined}
+                                    target={e.target !== null && e.target !== undefined ? e.target : undefined}
+                                    href={e.uri}>
+                                    {e.label}
+                                </Link>
+                            </li>
                         )
                     }
                 })
