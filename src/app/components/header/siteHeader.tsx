@@ -33,6 +33,7 @@ const Header = ({ menu, title, tagline }: Props) => {
         <header role="banner" className={classes['siteHeader']}>
             <h1 className={classes['logo']}>
                 <Link
+                    role="link"
                     className={classes['title']}
                     href="/">
                     {title}
@@ -41,7 +42,7 @@ const Header = ({ menu, title, tagline }: Props) => {
             </h1>
             <nav className={ classes['header-nav'] } onClick={toggleMenu}>
 
-                { menuOpen ? <CloseIcon /> : <HamburgerIcon /> }
+                { menuOpen ? <CloseIcon data-testid="close-icon" /> : <HamburgerIcon data-testid="hamburger-icon" /> }
 
                 <NavigationMenu
                     open={menuOpen}

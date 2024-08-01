@@ -16,6 +16,7 @@ const config = {
         '@/app/(.*)': '<rootDir>/src/app/$1',
         '@/components/(.*)': '<rootDir>/src/app/components/$1',
         '@/data/(.*)': '<rootDir>/src/app/data/$1',
+        "^.+\\.(svg)$": "<rootDir>/__mocks__/svg.tsx",
     },
 
     testEnvironment: 'jest-environment-jsdom',

@@ -15,7 +15,7 @@ type Props = {
 const NavigationMenu = ( { menu, open } : Props ) => {
 
     return (
-        <ol role="navigation" className={`${styles['header-menu']} ${open ? styles['header-menu--open'] : styles['header-menu--close']}`}>
+        <ol className={`${styles['header-menu']} ${open ? styles['header-menu--open'] : styles['header-menu--close']}`}>
             {
                 menu?.map((e) => {
                     if (e.uri) {
