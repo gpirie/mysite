@@ -43,11 +43,14 @@
                 position: relative;
                 z-index: 2000;
             }
+        }
 
+        > svg {
             @media (min-width: 552px) {
                 display: none;
             }
         }
+
     }
 
 }
