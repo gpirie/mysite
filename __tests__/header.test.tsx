@@ -1,56 +1,77 @@
 // Imports
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-
-
-// Data
-import { navMenuMock, siteTitle } from "../__mocks__/header";
-
-//Components
 import Header from '@/components/header/siteHeader';
+import { navMenuMock, siteDescription, siteTitle } from '../__mocks__/header';
 
-describe('Header', () => {
-
-    it('renders without crashing', async () => {
-
-        render(<Header title={siteTitle} menu={navMenuMock} />);
+describe('Site Header', () => {
+    it('renders without crashing', () => {
+        render(<Header tagline={siteDescription} title={siteTitle} menu={navMenuMock} />);
         const headerElement = screen.getByRole('banner');
         expect(headerElement).toBeInTheDocument();
     });
 
-    it('renders the site name', async () => {
-        render(<Header title={siteTitle} menu={navMenuMock} />);
-
-        // Wait for the element to appear
-        const titleElement = await screen.findByText(siteTitle);
-
+    it('renders the site name', () => {
+        render(<Header tagline={siteDescription} title={siteTitle} menu={navMenuMock} />);
+        const titleElement = screen.getByText(siteTitle);
         expect(titleElement).toBeInTheDocument();
     });
 
-    it('contains a navigation menu', async () => {
-        render(<Header title={siteTitle} menu={navMenuMock} />);
-        const navElement = await screen.findByRole('navigation');
+    it('contains a navigation menu', () => {
+        render(<Header tagline={siteDescription} title={siteTitle} menu={navMenuMock} />);
+        const navElement = screen.getByRole('navigation');
         expect(navElement).toBeInTheDocument();
     });
 
-    it('passes the correct menu prop to NavigationMenu', async () => {
-        render(<Header title={siteTitle} menu={navMenuMock} />);
-        const navMenu = await screen.findByRole('navigation');
-        expect(navMenu).toHaveAttribute('class', 'header-menu');
-    });
-
-    it('renders a link to the homepage', async () => {
-        render(<Header title={siteTitle} menu={navMenuMock} />);
-        const linkElement = await screen.findByRole('link', { name: siteTitle });
+    it('renders a link to the homepage', () => {
+        render(<Header tagline={siteDescription} title={siteTitle} menu={navMenuMock} />);
+        const linkElement = screen.getByRole('link', { name: siteTitle + ' ' + siteDescription });
         expect(linkElement).toHaveAttribute('href', '/');
     });
 
-    it('applies the correct CSS classes', async () => {
-        render(<Header title={siteTitle} menu={navMenuMock} />);
-        const headerElement = await screen.findByRole('banner');
+    it('applies the correct CSS classes', () => {
+        render(<Header tagline={siteDescription} title={siteTitle} menu={navMenuMock} />);
+        const headerElement = screen.getByRole('banner');
         expect(headerElement).toHaveClass('siteHeader');
 
-        const titleElement = await screen.findByText(siteTitle);
+        const titleElement = screen.getByText(siteTitle);
         expect(titleElement).toHaveClass('title');
+    });
+
+    it('toggles the menu state and icon on click', () => {
+        render(<Header tagline={siteDescription} title={siteTitle} menu={navMenuMock} />);
+        const navElement = screen.getByRole('navigation');
+
+        // Initial state
+        expect(screen.queryByTestId('hamburger-icon')).toBeInTheDocument();
+        expect(screen.queryByTestId('close-icon')).not.toBeInTheDocument();
+
+        // Simulate click to open menu
+        fireEvent.click(navElement);
+        expect(screen.queryByTestId('hamburger-icon')).not.toBeInTheDocument();
+        expect(screen.queryByTestId('close-icon')).toBeInTheDocument();
+
+        // Simulate click to close menu
+        fireEvent.click(navElement);
+        expect(screen.queryByTestId('hamburger-icon')).toBeInTheDocument();
+        expect(screen.queryByTestId('close-icon')).not.toBeInTheDocument();
+    });
+
+    it('applies the open class when the menu is open', () => {
+        render(<Header tagline={siteDescription} title={siteTitle} menu={navMenuMock} />);
+        const navElement = screen.getByRole('navigation');
+
+        // Open the menu
+        fireEvent.click(navElement);
+        expect(navElement).toHaveClass('header-nav'); // Ensure the correct class is applied
+
+        // Close the menu
+        fireEvent.click(navElement);
+        expect(navElement).not.toHaveClass('header-nav-open');
+    });
+
+    it('matches the snapshot', () => {
+        const { asFragment } = render(<Header tagline={siteDescription} title={siteTitle} menu={navMenuMock} />);
+        expect(asFragment()).toMatchSnapshot();
     });
 });

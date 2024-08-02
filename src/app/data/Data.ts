@@ -49,7 +49,9 @@ export const fetchMenus = async ( menuName: string ) => {
           menuItems(where: {location: ${ menuName }}) {
             nodes {
               id        
-              label        
+              label   
+              cssClasses
+              target     
               uri
               connectedNode {
                 node {

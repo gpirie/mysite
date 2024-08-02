@@ -5,5 +5,7 @@ declare module 'types' {
         id: number | null;
         label: string | null;
         uri: string | null;
+        cssClasses: [] | null;
+        target: string | null;
     }
 }

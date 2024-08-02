@@ -1,5 +1,7 @@
 // Imports
 import Link from "next/link";
+import GitHubIcon from "@/public/assets/icons/github.svg";
+import LinkedinIcon from "@/public/assets/icons/linkedin.svg";
 
 // Styles
 import styles from "./menu.module.scss";
@@ -8,24 +10,52 @@ import styles from "./menu.module.scss";
 import { Menu } from "types";
 
 type Props = {
-    styleClass: string;
     menu: Menu[];
+    open: boolean;
 }
 
-const NavigationMenu = ( { styleClass, menu } : Props ) => {
+const NavigationMenu = ( { menu, open } : Props ) => {
+
     return (
-        <ol role="navigation" className={styles[styleClass]}>
+        <ol className={`${styles['header-menu']} ${open ? styles['header-menu--open'] : styles['header-menu--close']}`}>
             {
-                menu?.map((e, index) => {
+                menu?.map((e) => {
+
                     if (e.uri) {
+
+                        const classNames = e.cssClasses
+                            ? e.cssClasses.map(className => styles[className]).join(' ')
+                            : '';
+
+                        let label = e.label;
+                        if (classNames.includes(styles['linkedin'])) {
+                            label = (
+                                <>
+                                    <span className={styles['label-text']}>{e.label}</span>
+                                    <LinkedinIcon className={`${styles['linkedin-icon']} ${styles['common-icon-style']}`} />
+                                </>
+                            );
+                        } else if (classNames.includes(styles['github'])) {
+                            label = (
+                                <>
+                                    <span className={styles['label-text']}>{e.label}</span>
+                                    <GitHubIcon className={`${styles['github-icon']} ${styles['common-icon-style']}`} />
+                                </>
+                            );
+                        }
+
                         return (
-                            <Link
-                                key={index}
-                                href={e.uri}>
-                                {e.label}
-                            </Link>
+                            <li className={`${styles['header-menu__item']}`} key={e.id}>
+                                <Link
+                                    className={classNames}
+                                    target={e.target || undefined}
+                                    href={e.uri}>
+                                    {label}
+                                </Link>
+                            </li>
                         )
                     }
+                    return null; // Handle cases where e.uri is undefined
                 })
             }
         </ol>
