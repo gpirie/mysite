@@ -2,7 +2,7 @@
 import {fetchSinglePage} from "@/data/Data";
 import {parseHTML} from "@/utils/utils";
 
-const HomePage = async ({params}: { params: {slug: string}}) => {
+const Page = async ({params}: { params: {slug: string}}) => {
 
     // Get Page data
     const pageData = await fetchSinglePage(params.slug);
@@ -11,11 +11,9 @@ const HomePage = async ({params}: { params: {slug: string}}) => {
         <>
             <h1>{pageData?.title}</h1>
 
-            {
-                parseHTML(pageData.content)
-            }
+            { pageData?.content ? parseHTML(pageData?.content) : '' }
         </>
     )
 }
 
-export default HomePage;
+export default Page;

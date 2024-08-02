@@ -11,6 +11,7 @@ import {fetchMenus, fetchSiteSettings} from "@/data/Data";
 // Styles
 import "@/styles/reset.scss";
 import "@/styles/globals.scss";
+import styles from "./(url-paths)/[slug]/page.module.scss";
 
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -40,7 +41,9 @@ const RootLayout = async ({children}: {children: React.ReactNode}) => {
             <html lang="en">
             <body>
                 <Header title={settings.title} tagline={settings.description} menu={headerMenu} />
-                {children}
+                <main className={styles['main-content']}>
+                    {children}
+                </main>
                 <Footer title={settings.title} />
             </body>
             </html>

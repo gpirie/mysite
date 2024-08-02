@@ -39,14 +39,14 @@
         svg {
             cursor: pointer;
 
-            @media (max-width: 551px) {
+            @media (max-width: 654px) {
                 position: relative;
                 z-index: 2000;
             }
         }
 
         > svg {
-            @media (min-width: 552px) {
+            @media (min-width: 655px) {
                 display: none;
             }
         }

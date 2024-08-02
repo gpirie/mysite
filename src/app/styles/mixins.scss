@@ -1,3 +1,6 @@
+// Imports
+@import "@/styles/globals.scss";
+
 @mixin content-wrap {
   padding-left: 7.5vw;
   padding-right: 7.5vw;
@@ -5,4 +8,12 @@
 
 @mixin element-spacing {
   margin-bottom: 2rem;
+}
+
+@mixin breakpoint($point) {
+  @if $point == small {
+    @media (max-width: var(--small-screen)) { @content; }
+  }@elseif $point == large {
+    @media (min-width:  var(--large-screen))  { @content; }
+  }
 }

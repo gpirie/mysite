@@ -7,21 +7,21 @@ export const navMenuMock: Menu[] = [
         id: 1,
         label: 'Home',
         uri: '/',
-        cssClasses: '',
+        cssClasses: [],
         target: ''
     },
     {
         id: 2,
         label: 'About',
         uri: '/about',
-        cssClasses: '',
+        cssClasses: [],
         target: ''
     },
     {
         id: 3,
         label: 'Contact',
         uri: '/contact',
-        cssClasses: '',
+        cssClasses: [],
         target: ''
     },
     // Add more items as needed

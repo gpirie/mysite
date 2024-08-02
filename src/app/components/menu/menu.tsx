@@ -29,6 +29,7 @@ const NavigationMenu = ( { menu, open } : Props ) => {
 
                         let label = e.label;
                         if (classNames.includes(styles['linkedin'])) {
+                            // @ts-ignore
                             label = (
                                 <>
                                     <span className={styles['label-text']}>{e.label}</span>
@@ -36,6 +37,7 @@ const NavigationMenu = ( { menu, open } : Props ) => {
                                 </>
                             );
                         } else if (classNames.includes(styles['github'])) {
+                            // @ts-ignore
                             label = (
                                 <>
                                     <span className={styles['label-text']}>{e.label}</span>

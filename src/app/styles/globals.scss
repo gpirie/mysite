@@ -1,17 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Tilt+Warp&display=swap');
 
 :root {
+    // Breakpoints
+    --small-screen: 654px;
+    --large-screen: 655px;
+
+    // Colours
     --primary-colour: #f328c1;
     --primary-colour-dark: #4b0f36;
     --secondary-colour: #90b494;
     --secondary-colour-dark: #102B24;
+
+    // Fonts
     --font-primary: 'Tilt Warp', cursive;
     --font-secondary: 'Barlow', 'Helvetica Neue', Helvetica, Arial,  sans-serif;
 
+    // Body Colours
     --body-bg: #fcfbf4;
     --body-bg-dark: #2e2e2e;
-    --text-colour: #090808;
+    --text-colour: #4A4A4A;
     --text-colour-dark: #ccc;
+
+    // Type
+    /* set base values */
+    --text-base-size: 1rem;
+    --text-scale-ratio: 1.2;
+
+    --text-md: calc(1em * var(--text-scale-ratio));
+    --text-lg: calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio));
+    --text-xl: calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio));
+    --text-xxl: calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio));
 }
 
 body {
@@ -33,6 +51,7 @@ body {
 }
 
 h1, h2, h3, h4 {
+    color: var(--primary-colour);
     font-family: var(--font-primary);
     text-transform: uppercase;
     font-variation-settings: 'ital' 0, 'wdth' 100, 'wght' 100;
