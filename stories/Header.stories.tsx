@@ -4,8 +4,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 // Components
 import Header from "@/components/header/siteHeader";
 
+// Types
+import { Menu } from 'types';
+
 // Data
-const menuData = [
+const menuData: Menu[] = [
     {
         id: 1,
         label: 'About',
