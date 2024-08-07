@@ -11,16 +11,39 @@ import { Menu } from 'types';
 const menuData: Menu[] = [
     {
         id: 1,
-        label: 'About',
-        uri: '/about',
-        target: '_self',
+        label: 'Home',
+        cssClasses: [ 'home-link' ],
+        target: null,
+        uri: '/',
     },
     {
         id: 2,
-        label: 'Connect',
-        uri: 'https://www.linkedin.com/in/graeme-pirie-08625275/',
-        target: '_blank',
+        label: 'About',
+        cssClasses: [],
+        target: null,
+        uri: '/about/',
     },
+    {
+        id: 3,
+        label: 'Experience',
+        cssClasses: [],
+        target: null,
+        uri: '/experience/',
+    },
+    {
+        id: 4,
+        label: 'Linked In',
+        cssClasses: [ 'linkedin' ],
+        target: '_blank',
+        uri: 'https://www.linkedin.com/in/graeme-pirie-08625275/',
+    },
+    {
+        id: 5,
+        label: 'GitHub',
+        cssClasses: [ 'github' ],
+        target: '_blank',
+        uri: 'https://github.com/gpirie',
+    }
     // Add more items as needed
 ];
 
