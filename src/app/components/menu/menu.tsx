@@ -10,15 +10,13 @@ import styles from "./menu.module.scss";
 import { Menu } from "types";
 
 type Props = {
-    menu: Menu[];
+    menu: Menu;
     open?: boolean;
 }
 
 const NavigationMenu = ( { menu, open } : Props ) => {
 
-    const menuName = menu.name.toLowerCase();
-
-    console.log(menu.menuItems.nodes);
+    const menuName = menu?.name?.toLowerCase();
 
     return (
 
