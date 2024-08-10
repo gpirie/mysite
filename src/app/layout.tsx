@@ -6,7 +6,7 @@ import Header from "@/components/header/siteHeader"
 import Footer from "@/components/footer/siteFooter"
 
 // Functions
-import {fetchMenus, fetchSiteSettings} from "@/data/Data";
+import {fetchMenuByName, fetchMenus, fetchSiteSettings} from "@/data/Data";
 
 // Styles
 import "@/styles/reset.scss";
@@ -32,7 +32,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const RootLayout = async ({children}: {children: React.ReactNode}) => {
 
-    const headerMenu =  await fetchMenus('MAIN_MENU');
+    const headerMenu =  await fetchMenuByName('Header');
+
+    const footerMenu = await fetchMenuByName( 'Footer');
 
     const settings = await fetchSiteSettings();
 
@@ -44,7 +46,7 @@ const RootLayout = async ({children}: {children: React.ReactNode}) => {
                 <main className={styles['main-content']}>
                     {children}
                 </main>
-                <Footer title={settings.title} />
+                <Footer title={settings.title} menu={footerMenu} />
             </body>
             </html>
         </>

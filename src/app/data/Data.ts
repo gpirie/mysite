@@ -139,9 +139,36 @@ export const fetchSinglePage = async ( slug: string ) => {
     try {
         const data = await fetchGraphQL(query, { slug: slug });
 
-        console.log(data?.data?.nodeByUri?.date)
-
         return data?.data?.nodeByUri;
+
+
+    } catch (error) {
+        console.error('Error fetching WordPress Event:' + slug, error);
+    }
+}
+
+export const fetchMenuByName = async ( slug: string ) => {
+    const query = `
+        query MenuByName($slug: ID!) {
+            menu(id: $slug, idType: NAME) {
+                id
+                name
+                menuItems {
+                    nodes {
+                        cssClasses
+                        id
+                        label
+                        target
+                        uri
+                    }
+                }
+            }
+        }
+    `;
+    try {
+        const data = await fetchGraphQL(query, { slug: slug });
+
+        return data?.data?.menu;
 
 
     } catch (error) {
