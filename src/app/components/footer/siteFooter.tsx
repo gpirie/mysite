@@ -8,17 +8,17 @@ import NavigationMenu from "@/components/menu/menu";
 
 type Props = {
     title: string;
-    menu: Menu[];
+    menu: Menu;
 };
 
 const siteFooter = ({ title, menu }: Props) => {
 
-    console.log(menu);
-
     return (
         <footer className={styles['site-footer']}>
+
             <NavigationMenu
                 menu={ menu }
+                toggle={ false }
             />
 
             <small>&copy; {title} {new Date().getFullYear()}</small>
