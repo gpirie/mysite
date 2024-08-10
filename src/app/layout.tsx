@@ -6,7 +6,7 @@ import Header from "@/components/header/siteHeader"
 import Footer from "@/components/footer/siteFooter"
 
 // Functions
-import {fetchMenuByName, fetchMenus, fetchSiteSettings} from "@/data/Data";
+import {fetchMenuByName, fetchSiteSettings} from "@/data/Data";
 
 // Styles
 import "@/styles/reset.scss";
