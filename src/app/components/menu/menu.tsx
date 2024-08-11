@@ -2,17 +2,19 @@
 
 // Imports
 import Link from "next/link";
-import GitHubIcon from "@/public/assets/icons/github.svg";
-import LinkedinIcon from "@/public/assets/icons/linkedin.svg";
+import {useState} from "react";
 
 // Styles
 import styles from "./menu.module.scss";
 
 // Types
 import { Menu } from "types";
-import {useState} from "react";
+
+// Components
 import CloseIcon from "@/public/assets/icons/close.svg";
 import HamburgerIcon from "@/public/assets/icons/hamburger.svg";
+import GitHubIcon from "@/public/assets/icons/github.svg";
+import LinkedinIcon from "@/public/assets/icons/linkedin.svg";
 
 type Props = {
     menu: Menu;
