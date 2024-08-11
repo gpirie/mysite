@@ -30,27 +30,4 @@
     .description {
         font-variation-settings: 'ital' 0, 'wdth' 100, 'wght' 100;
     }
-
-    .header-nav {
-        align-items: center;
-        display: flex;
-        justify-content: center;
-
-        svg {
-            cursor: pointer;
-
-            @media (max-width: 654px) {
-                position: relative;
-                z-index: 2000;
-            }
-        }
-
-        > svg {
-            @media (min-width: 655px) {
-                display: none;
-            }
-        }
-
-    }
-
 }

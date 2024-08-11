@@ -7,7 +7,6 @@ import LinkedinIcon from "@/public/assets/icons/linkedin.svg";
 
 // Styles
 import styles from "./menu.module.scss";
-import headerStyles from "../header/siteHeader.module.scss"
 
 // Types
 import { Menu } from "types";
@@ -30,18 +29,18 @@ const NavigationMenu = ( { menu, toggle } : Props ) => {
         setMenuOpen(!menuOpen);
     };
 
-    console.log( menuName + ' toggle = ' + toggle);
+    console.log(menuName);
 
     return (
 
-        <nav className={`${headerStyles[`${menuName}-nav`]}`} onClick={toggleMenu}>
+        <nav className={`${styles[`${menuName}-nav`]}`} onClick={toggleMenu}>
 
             {toggle && (
                 <>
                     {menuOpen ? (
-                        <CloseIcon className={headerStyles['close-icon']} data-testid="close-icon" />
+                        <CloseIcon className={styles['close-icon']} data-testid="close-icon" />
                     ) : (
-                        <HamburgerIcon className={headerStyles['menu-icon']} data-testid="hamburger-icon" />
+                        <HamburgerIcon className={styles['menu-icon']} data-testid="hamburger-icon" />
                     )}
                 </>
             )}
@@ -77,7 +76,7 @@ const NavigationMenu = ( { menu, toggle } : Props ) => {
                             }
 
                             return (
-                                <li className={`${styles['header-menu__item']}`} key={e.id}>
+                                <li className={`${styles[`${menuName}-menu__item`]}`} key={e.id}>
                                     <Link
                                         className={classNames}
                                         target={e.target || undefined}
