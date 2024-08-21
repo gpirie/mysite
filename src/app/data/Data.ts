@@ -160,6 +160,7 @@ export const fetchMenuByName = async ( slug: string ) => {
                         label
                         target
                         uri
+                        title
                     }
                 }
             }
