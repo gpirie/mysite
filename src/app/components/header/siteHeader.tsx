@@ -35,6 +35,7 @@ const Header = ({ menu, title, tagline }: Props) => {
             <NavigationMenu
                 menu={ menu }
                 toggle={ true }
+                menuStyles={classes}
             />
         </header>
     );

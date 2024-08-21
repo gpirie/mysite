@@ -4,9 +4,6 @@
 import Link from "next/link";
 import {useState} from "react";
 
-// Styles
-import styles from "./menu.module.scss";
-
 // Types
 import { Menu } from "types";
 
@@ -19,9 +16,10 @@ import LinkedinIcon from "@/public/assets/icons/linkedin.svg";
 type Props = {
     menu: Menu;
     toggle?: boolean;
+    menuStyles: { [key: string]: string };
 }
 
-const NavigationMenu = ( { menu, toggle } : Props ) => {
+const NavigationMenu = ( { menu, toggle, menuStyles } : Props ) => {
 
     const menuName = menu?.name?.toLowerCase();
 
@@ -31,23 +29,21 @@ const NavigationMenu = ( { menu, toggle } : Props ) => {
         setMenuOpen(!menuOpen);
     };
 
-    console.log(menuName);
-
     return (
 
-        <nav className={`${styles[`${menuName}-nav`]}`} onClick={toggleMenu}>
+        <nav className={`${menuStyles[`${menuName}-nav`]}`} onClick={toggleMenu}>
 
             {toggle && (
                 <>
                     {menuOpen ? (
-                        <CloseIcon className={styles['close-icon']} data-testid="close-icon" />
+                        <CloseIcon className={menuStyles['close-icon']} data-testid="close-icon" />
                     ) : (
-                        <HamburgerIcon className={styles['menu-icon']} data-testid="hamburger-icon" />
+                        <HamburgerIcon className={menuStyles['menu-icon']} data-testid="hamburger-icon" />
                     )}
                 </>
             )}
 
-            <ol className={`${styles[`${menuName}-menu`]} ${menuName === 'header' ? (menuOpen ? styles[`${menuName}-menu--open`] : styles[`${menuName}-menu--close`]) : ''}`}>
+            <ol className={`${menuStyles[`${menuName}-menu`]} ${menuName === 'header' ? (menuOpen ? menuStyles[`${menuName}-menu--open`] : menuStyles[`${menuName}-menu--close`]) : ''}`}>
 
                 {
                     menu?.menuItems.nodes.map((e) => {
@@ -55,34 +51,35 @@ const NavigationMenu = ( { menu, toggle } : Props ) => {
                         if (e.uri) {
 
                             const classNames = e.cssClasses
-                                ? e.cssClasses.map(className => styles[className]).join(' ')
+                                ? e.cssClasses.map(className => menuStyles[className]).join(' ')
                                 : '';
 
                             let label = e.label;
-                            if (classNames.includes(styles['linkedin'])) {
+                            if (classNames.includes(menuStyles['linkedin'])) {
                                 // @ts-ignore
                                 label = (
                                     <>
-                                        <span className={styles['label-text']}>{e.label}</span>
-                                        <LinkedinIcon className={`${styles['linkedin-icon']} ${styles['common-icon-style']}`} />
+                                        <span className={menuStyles['label-text']}>{e.label}</span>
+                                        <LinkedinIcon className={`${menuStyles['linkedin-icon']} ${menuStyles['common-icon-style']}`} />
                                     </>
                                 );
-                            } else if (classNames.includes(styles['github'])) {
+                            } else if (classNames.includes(menuStyles['github'])) {
                                 // @ts-ignore
                                 label = (
                                     <>
-                                        <span className={styles['label-text']}>{e.label}</span>
-                                        <GitHubIcon className={`${styles['github-icon']} ${styles['common-icon-style']}`} />
+                                        <span className={menuStyles['label-text']}>{e.label}</span>
+                                        <GitHubIcon className={`${menuStyles['github-icon']} ${menuStyles['common-icon-style']}`} />
                                     </>
                                 );
                             }
 
                             return (
-                                <li className={`${styles[`${menuName}-menu__item`]}`} key={e.id}>
+                                <li className={`${menuStyles[`${menuName}-menu__item`]}`} key={e.id}>
                                     <Link
                                         className={classNames}
                                         target={e.target || undefined}
-                                        href={e.uri}>
+                                        href={e.uri}
+                                        title={e.title}>
                                         {label}
                                     </Link>
                                 </li>
