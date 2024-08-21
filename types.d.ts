@@ -15,6 +15,7 @@ declare module 'types' {
         cssClasses: string[];
         target: string;
         uri: string;
+        title: string;
         connectedNode: any; // Adjust the type as needed
     };
 }
