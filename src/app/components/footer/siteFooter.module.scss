@@ -1,4 +1,8 @@
 .site-footer {
+
+    @import "@/styles/mixins.scss";
+    @include content-wrap;
+
     background-color: var(--secondary-colour);
     color: var(--text-colour);
     padding-bottom: 2rem;
@@ -10,32 +14,44 @@
         color: var(--text-colour-dark);
     }
 
+    @include respond-to('large') {
+        display: flex;
+        justify-content: space-between;
+    }
 
     .footer-nav {
-        color: red;
+
+        @include respond-to('small') {
+            @include vertical-element-spacing;
+        }
+
+        @include respond-to('large') {
+            display: flex;
+            order: 2;
+        }
     }
 
     .footer-menu {
-        color: blue;
+
+        @include respond-to('large') {
+            display: flex;
+        }
 
         &__item {
-            color: pink;
+            margin-bottom: .75rem;
+
+            @include respond-to('large') {
+                margin-right: 1rem;
+            }
         }
     }
 
-    .legal-nav {
-        color: red;
-    }
+    .copyright {
 
-    .legal-menu {
-        color: blue;
-
-        &__item {
-            color: pink;
+        @include respond-to('large') {
+            order: 1;
         }
+
     }
-
-
-
 
 }

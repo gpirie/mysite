@@ -4,7 +4,6 @@ import styles from "./siteFooter.module.scss";
 // Types
 import { Menu } from 'types';
 import NavigationMenu from "@/components/menu/menu";
-import {fetchMenuByName} from "@/data/Data";
 
 type Props = {
     title: string;
@@ -12,8 +11,6 @@ type Props = {
 };
 
 const siteFooter = async ({ title, menu }: Props) => {
-
-    const legalMenu = await fetchMenuByName( 'Legal');
 
     return (
         <footer className={styles['site-footer']}>
@@ -24,13 +21,8 @@ const siteFooter = async ({ title, menu }: Props) => {
                 menuStyles={styles}
             />
 
-            <NavigationMenu
-                menu={ legalMenu }
-                toggle={ false }
-                menuStyles={styles}
-            />
+            <small className={styles['copyright']}>&copy; {title} {new Date().getFullYear()}</small>
 
-            <small>&copy; {title} {new Date().getFullYear()}</small>
         </footer>
     );
 }
