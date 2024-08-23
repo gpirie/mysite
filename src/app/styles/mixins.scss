@@ -1,19 +1,30 @@
 // Imports
 @import "@/styles/globals.scss";
+@import "variables";
 
+// Content Wrap.
 @mixin content-wrap {
   padding-left: 7.5vw;
   padding-right: 7.5vw;
 }
 
-@mixin element-spacing {
+// Vertical spacing between elements.
+@mixin vertical-element-spacing {
   margin-bottom: 2rem;
 }
 
-@mixin breakpoint($point) {
-  @if $point == small {
-    @media (max-width: var(--small-screen)) { @content; }
-  }@elseif $point == large {
-    @media (min-width:  var(--large-screen))  { @content; }
+// Handle breakpoints throughout the site.
+@mixin respond-to($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
   }
 }
