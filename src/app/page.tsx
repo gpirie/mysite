@@ -9,8 +9,6 @@ const HomePage = async () => {
 
     return (
         <>
-            <h1>{pageData?.title}</h1>
-
             {
                 parseHTML(pageData.content)
             }

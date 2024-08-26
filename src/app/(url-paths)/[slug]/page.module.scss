@@ -1,0 +1,36 @@
+.main-content {
+  // Imports
+  @import "@/styles/mixins.scss";
+
+  // Mixins
+  @include content-wrap;
+  @include vertical-element-spacing;
+
+  // main-content styles
+
+  // Child styles
+  h1, h2, h3, h4 {
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-size: var(--text-xxl);
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+  }
+
+  h4 {
+    font-size: var(--text-md);
+  }
+
+  p {
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+}

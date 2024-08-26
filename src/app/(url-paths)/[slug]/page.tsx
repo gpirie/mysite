@@ -2,20 +2,28 @@
 import {fetchSinglePage} from "@/data/Data";
 import {parseHTML} from "@/utils/utils";
 
-const HomePage = async ({params}: { params: {slug: string}}) => {
+// Components
+import NotFound from "../not-found";
+
+const Page = async ({params}: { params: {slug: string}}) => {
 
     // Get Page data
     const pageData = await fetchSinglePage(params.slug);
+
+    if (!pageData) {
+
+        return (
+            <NotFound />
+        )
+    }
 
     return (
         <>
             <h1>{pageData?.title}</h1>
 
-            {
-                parseHTML(pageData.content)
-            }
+            { pageData?.content ? parseHTML(pageData?.content) : '' }
         </>
     )
 }
 
-export default HomePage;
+export default Page;
