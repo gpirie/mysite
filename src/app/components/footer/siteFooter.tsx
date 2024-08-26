@@ -10,7 +10,7 @@ type Props = {
     menu: Menu;
 };
 
-const siteFooter = async ({ title, menu }: Props) => {
+const siteFooter = ({ title, menu }: Props) => {
 
     return (
         <footer className={styles['site-footer']}>
