@@ -41,7 +41,8 @@
             margin-bottom: .75rem;
 
             @include respond-to('large') {
-                margin-right: 1rem;
+                margin-bottom: 0;
+                margin-left: 1rem;
             }
         }
     }
