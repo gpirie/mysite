@@ -46,7 +46,7 @@ const NavigationMenu = ( { menu, toggle, menuStyles } : Props ) => {
             <ol className={`${menuStyles[`${menuName}-menu`]} ${menuName === 'header' ? (menuOpen ? menuStyles[`${menuName}-menu--open`] : menuStyles[`${menuName}-menu--close`]) : ''}`}>
 
                 {
-                    menu?.menuItems.nodes.map((e) => {
+                    menu?.menuItems?.nodes?.map((e) => {
 
                         if (e.uri) {
 
@@ -79,7 +79,7 @@ const NavigationMenu = ( { menu, toggle, menuStyles } : Props ) => {
                                         className={classNames}
                                         target={e.target || undefined}
                                         href={e.uri}
-                                        title={e.title}>
+                                        title={e.title || undefined}>
                                         {label}
                                     </Link>
                                 </li>
