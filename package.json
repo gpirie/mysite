@@ -13,10 +13,12 @@
     "test:watch": "jest --watch",
     "test:watch:verbose": "jest --watch --verbose",
     "test:coverage": "jest --coverage",
-    "test:coverage:html": "jest --coverage --coverageDirectory='coverage'"
+    "test:coverage:html": "jest --coverage --coverageDirectory='coverage'",
+    "chromatic": "npx chromatic --project-token=chpt_2fc9234870610a8"
   },
   "dependencies": {
     "@newhighsco/storybook-addon-svgr": "^2.0.22",
+    "@storybook/jest": "^0.2.3",
     "@testing-library/user-event": "^14.5.2",
     "@types/node": "^20.14.12",
     "dompurify": "^3.1.6",
