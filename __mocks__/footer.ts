@@ -35,5 +35,3 @@ export const footerMenu: Menu = {
     }
 };
 
-// Mock Site Name
-export const siteTitle = 'Graeme Pirie';

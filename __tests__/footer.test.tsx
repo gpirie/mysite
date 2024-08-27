@@ -2,7 +2,10 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Footer from "../src/app/components/footer/siteFooter";
-import { footerMenu, siteTitle } from '../__mocks__/footer';
+
+// Data Mocks
+import { footerMenu } from '../__mocks__/footer';
+import { siteTitle } from '../__mocks__/global';
 
 // Styles
 import styles from "../src/app/components/footer/siteFooter.module.scss";

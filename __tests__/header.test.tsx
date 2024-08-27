@@ -2,7 +2,10 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Header from '@/components/header/siteHeader';
-import { navMenuMock, siteDescription, siteTitle } from '../__mocks__/header';
+
+// Data Mocks
+import { navMenuMock } from '../__mocks__/header';
+import { siteDescription, siteTitle } from '../__mocks__/global';
 
 // Types
 import { Menu } from 'types';
