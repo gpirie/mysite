@@ -1,9 +1,8 @@
 declare module 'types' {
-    // Define specific types or use `any` for a temporary solution
-    // e.g., export type MyType = { foo: string; bar: number };
+
     export type Menu = {
-        id: number | null;
-        name: string | null;
+        id: string | null;
+        name: string;
         menuItems: {
             nodes: MenuItem[];
         }
@@ -13,9 +12,8 @@ declare module 'types' {
         id: string;
         label: string;
         cssClasses: string[];
-        target: string;
+        target: string | null;
         uri: string;
-        title: string;
-        connectedNode: any; // Adjust the type as needed
+        title: string | null;
     };
 }

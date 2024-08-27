@@ -21,10 +21,9 @@ type Props = {
 const Header = ({ menu, title, tagline }: Props) => {
 
     return (
-        <header role="banner" className={classes['siteHeader']}>
+        <header className={classes['siteHeader']}>
             <h1 className={classes['logo']}>
                 <Link
-                    role="link"
                     className={classes['title']}
                     href="/">
                     {title}

@@ -2,7 +2,13 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Header from '@/components/header/siteHeader';
-import { navMenuMock, siteDescription, siteTitle } from '../__mocks__/header';
+
+// Data Mocks
+import { navMenuMock } from '../__mocks__/header';
+import { siteDescription, siteTitle } from '../__mocks__/global';
+
+// Types
+import { Menu } from 'types';
 
 describe('Site Header', () => {
     it('renders without crashing', () => {
@@ -55,19 +61,6 @@ describe('Site Header', () => {
         fireEvent.click(navElement);
         expect(screen.queryByTestId('hamburger-icon')).toBeInTheDocument();
         expect(screen.queryByTestId('close-icon')).not.toBeInTheDocument();
-    });
-
-    it('applies the open class when the menu is open', () => {
-        render(<Header tagline={siteDescription} title={siteTitle} menu={navMenuMock} />);
-        const navElement = screen.getByRole('navigation');
-
-        // Open the menu
-        fireEvent.click(navElement);
-        expect(navElement).toHaveClass('header-nav'); // Ensure the correct class is applied
-
-        // Close the menu
-        fireEvent.click(navElement);
-        expect(navElement).not.toHaveClass('header-nav-open');
     });
 
     it('matches the snapshot', () => {

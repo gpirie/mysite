@@ -2,7 +2,7 @@
 import { Menu } from 'types';
 
 // Mock Navigation Menu
-export const navMenuMock: Menu = {
+export const footerMenu: Menu = {
     id: "dGVybTo0",
     name: "Header",
     menuItems: {
@@ -10,14 +10,6 @@ export const navMenuMock: Menu = {
             {
                 cssClasses: ["home-link"],
                 id: "cG9zdDoyMg==",
-                label: "Home",
-                target: null,
-                uri: "/",
-                title: null,
-            },
-            {
-                cssClasses: [],
-                id: "cG9zdDoxNA==",
                 label: "About",
                 target: null,
                 uri: "/about/",
@@ -32,22 +24,14 @@ export const navMenuMock: Menu = {
                 title: null,
             },
             {
-                cssClasses: ["linkedin"],
+                cssClasses: [],
                 id: "cG9zdDoxNg==",
-                label: "Linked In",
+                label: "Privacy Policy",
                 target: "_blank",
-                uri: "https://www.linkedin.com/in/graeme-pirie-08625275/",
-                title: null,
-            },
-            {
-                cssClasses: ["github"],
-                id: "cG9zdDoxOA==",
-                label: "GitHub",
-                target: "_blank",
-                uri: "https://github.com/gpirie",
+                uri: "/privacy-policy/",
                 title: null,
             },
         ],
-    },
+    }
 };
 
