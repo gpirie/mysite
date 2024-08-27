@@ -13,7 +13,7 @@ type Props = {
 const siteFooter = ({ title, menu }: Props) => {
 
     return (
-        <footer className={styles['site-footer']}>
+        <footer role="contentinfo" className={styles['site-footer']}>
 
             <NavigationMenu
                 menu={ menu }
