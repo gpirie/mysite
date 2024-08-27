@@ -4,6 +4,13 @@ import type { Meta, StoryObj } from '@storybook/react';
 // Components
 import Footer from "@/components/footer/siteFooter";
 
+// Data
+import { footerMenu } from "./data/footerMenu";
+
+// Types
+import { Menu } from 'types';
+
+
 // Story config
 const meta: Meta<typeof Footer> = {
     title: 'UI/Footer',
@@ -18,7 +25,11 @@ const meta: Meta<typeof Footer> = {
         backgrounds: {
             default: 'light',
         }
-    }
+    },
+    argTypes: {
+        title: { control: 'text' },
+        menu: { control: 'object' },
+    },
 };
 
 export default meta;
@@ -26,5 +37,8 @@ type Story = StoryObj<typeof Footer>;
 
 // Header: Default
 export const Default: Story = {
-    render: () => <Footer title="Graeme Pirie" />,
+    args: {
+        title: 'Graeme Pirie',
+        menu: footerMenu,
+    },
 };

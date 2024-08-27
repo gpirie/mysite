@@ -4,58 +4,13 @@ import type { Meta, StoryObj } from '@storybook/react';
 // Components
 import Header from "@/components/header/siteHeader";
 
+// Data
+import { headerMenu } from "./data/headerMenu";
+
 // Types
 import { Menu } from 'types';
 
 // Data
-const menuData: Menu = {
-    id: "dGVybTo0",
-    name: "Header",
-    menuItems: {
-        nodes: [
-            {
-                cssClasses: ["home-link"],
-                id: "cG9zdDoyMg==",
-                label: "Home",
-                target: null,
-                uri: "/",
-                title: null,
-            },
-            {
-                cssClasses: [],
-                id: "cG9zdDoxNA==",
-                label: "About",
-                target: null,
-                uri: "/about/",
-                title: null,
-            },
-            {
-                cssClasses: [],
-                id: "cG9zdDoyMQ==",
-                label: "Experience",
-                target: null,
-                uri: "/experience/",
-                title: null,
-            },
-            {
-                cssClasses: ["linkedin"],
-                id: "cG9zdDoxNg==",
-                label: "Linked In",
-                target: "_blank",
-                uri: "https://www.linkedin.com/in/graeme-pirie-08625275/",
-                title: null,
-            },
-            {
-                cssClasses: ["github"],
-                id: "cG9zdDoxOA==",
-                label: "GitHub",
-                target: "_blank",
-                uri: "https://github.com/gpirie",
-                title: null,
-            },
-        ],
-    },
-};
 
 // Story config
 const meta: Meta<typeof Header> = {
@@ -87,6 +42,6 @@ export const Default: Story = {
     args: {
         tagline: 'Software Engineer',
         title: 'Graeme Pirie',
-        menu: menuData,
+        menu: headerMenu,
     },
 };
