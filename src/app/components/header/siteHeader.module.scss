@@ -81,7 +81,7 @@
 
             .label-text {
                 @include respond-to('large') {
-                    display: none;
+                    @include visuallyhidden;
                 }
             }
 
