@@ -14,6 +14,7 @@
 
     @media (prefers-color-scheme: dark) {
         background-color: var(--primary-colour-dark);
+        border-bottom-color: var(--brand-colour-dark);
         color: var(--text-colour-dark);
     }
 
@@ -25,6 +26,10 @@
     .title,
     .description {
         display: block;
+
+        @media (prefers-color-scheme: dark) {
+            color: var(--brand-colour-dark);
+        }
     }
 
     .description {
@@ -60,6 +65,10 @@
             display: flex;
             gap: 1.75rem;
             justify-content: center;
+
+            @media (prefers-color-scheme: dark) {
+                color: var(--brand-colour-dark);
+            }
         }
 
         &--open {
@@ -98,6 +107,10 @@
                     @include respond-to('large') {
                         display: block;
                         fill: var(--primary-colour);
+
+                        @media (prefers-color-scheme: dark) {
+                            fill: var(--brand-colour-dark);
+                        }
                     }
                 }
             }
@@ -116,6 +129,10 @@
                         @include respond-to('large') {
                             display: block;
                             fill: var(--primary-colour);
+
+                            @media (prefers-color-scheme: dark) {
+                                fill: var(--brand-colour-dark);
+                            }
                         }
                     }
                 }
