@@ -6,8 +6,9 @@
     --large-screen: 655px;
 
     // Colours
-    --primary-colour: #f328c1;
-    --primary-colour-dark: #4b0f36;
+    --primary-colour: #C502A1;
+    --primary-colour-dark: #100D3B;
+    --brand-colour-dark: #FD77E4;
     --secondary-colour: #90b494;
     --secondary-colour-dark: #102B24;
 
@@ -16,7 +17,7 @@
     --font-secondary: 'Barlow', 'Helvetica Neue', Helvetica, Arial,  sans-serif;
 
     // Body Colours
-    --body-bg: #fcfbf4;
+    --body-bg: #EDEFEB;
     --body-bg-dark: #2e2e2e;
     --text-colour: #4A4A4A;
     --text-colour-dark: #ccc;
@@ -55,4 +56,8 @@ h1, h2, h3, h4 {
     font-family: var(--font-primary);
     text-transform: uppercase;
     font-variation-settings: 'ital' 0, 'wdth' 100, 'wght' 100;
+
+    @media (prefers-color-scheme: dark) {
+        color: var(--brand-colour-dark);
+    }
 }
