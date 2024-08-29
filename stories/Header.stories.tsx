@@ -1,6 +1,6 @@
 // Imports
 import type { Meta, StoryObj } from '@storybook/react';
-import { within, userEvent } from '@storybook/test';
+import { within, userEvent, fireEvent, waitFor } from '@storybook/test';
 import { expect } from '@storybook/jest';
 
 // Components
@@ -37,32 +37,25 @@ const meta: Meta<typeof Header> = {
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
 
-        // 1. Hamburger Icon Click
-        let mobileMenu = canvas.getByRole('navigation');
-        await expect(mobileMenu).toBeVisible();
+        // Toggles menu state
+        const navElement = canvas.getByRole('navigation');
 
-        // 2. Close Mobile Menu
-        await userEvent.click(mobileMenu);
-        // await expect(mobileMenu).not.toBeVisible();
-        // await expect(screen.queryByTestId('hamburger-icon')).toBeInTheDocument();
-        // await expect(screen.queryByTestId('close-icon')).not.toBeInTheDocument();
-        //
-        // // 3. Navigation Item Click
-        //await userEvent.click(hamburgerIcon); // Open menu again
-        // const menuItem = canvas.getByText('Home'); // Replace with actual menu item text
-        // await userEvent.click(menuItem);
-        // mobileMenu = canvas.queryByRole('navigation', { name: /menu/i });
-        // await expect(mobileMenu).not.toBeVisible(); // Assuming menu closes on click
-        //
-        // 4. Check Dark Mode Styles
-        // const header = canvas.getByRole('banner'); // Adjust the role if needed
-        // await expect(header).toHaveStyle('background-color: var(--primary-colour-dark)');
-        //
-        // // 5. Resize Window
-        // await window.resizeTo(320, 800); // Small screen size
-        // await expect(hamburgerIcon).toBeVisible();
-        // await window.resizeTo(1024, 800); // Larger screen size
-        // await expect(hamburgerIcon).not.toBeVisible();
+        // Initial state
+        expect(canvas.queryByTestId('hamburger-icon')).toBeInTheDocument();
+        await waitFor(() => {
+            expect(canvas.queryByTestId('close-icon')).not.toBeInTheDocument();
+        });
+
+        // Simulate click to open menu
+        await fireEvent.click(navElement);
+        expect(canvas.queryByTestId('close-icon')).toBeInTheDocument();
+
+        // Simulate click to close menu
+        fireEvent.click(navElement);
+        await waitFor(() => {
+            expect(canvas.queryByTestId('hamburger-icon')).toBeInTheDocument();
+        });
+        expect(canvas.queryByTestId('close-icon')).not.toBeInTheDocument();
     }
 };
 
@@ -77,3 +70,20 @@ export const Default: Story = {
         menu: headerMenu,
     },
 };
+
+export const WithDifferentMenu: Story = {
+    args: {
+        tagline: 'Frontend Developer',
+        title: 'Jane Doe',
+        menu: {
+            id: "2",
+            name: 'Header',
+            menuItems: {
+                nodes: [
+                    {id: "1", label: 'Portfolio', title: "Portfolio", cssClasses: [], target: null, uri: '/portfolio/'},
+                    {id: "2", label: 'Blog', title: "Blog", cssClasses: [], target: null, uri: '/blog/'},
+                ],
+            },
+        },
+    },
+}
