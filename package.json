@@ -15,6 +15,7 @@
     "test:watch:verbose": "jest --watch --verbose",
     "test:coverage": "jest --coverage",
     "test:coverage:html": "jest --coverage --coverageDirectory='coverage'",
+    "test:story": "test-storybook",
     "chromatic": "npx chromatic --project-token=chpt_2fc9234870610a8"
   },
   "dependencies": {
