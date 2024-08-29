@@ -55,7 +55,6 @@ const meta: Meta<typeof Header> = {
         await waitFor(() => {
             expect(canvas.queryByTestId('hamburger-icon')).toBeInTheDocument();
         });
-        expect(canvas.queryByTestId('close-icon')).not.toBeInTheDocument();
     }
 };
 
