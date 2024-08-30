@@ -1,19 +1,20 @@
 import type { Preview } from "@storybook/react";
-
 import "@/styles/reset.scss";
 import "@/styles/globals.scss";
 
-const preview: Preview = {
+export const preview: Preview = {
     parameters: {
-        actions: { argTypesRegex: "^on[A-Z].*" },
+        a11y: {
+            config: {
+                rules: [
+                    {
+                        'color-contrast': { enabled: true, options: { level: 'AAA' } },
+                    },
+                ],
+            }
+        },
         backgrounds: {
             default: 'light',
-            values: [
-                {
-                    name: 'events',
-                    value: '#070a24',
-                }
-            ]
         },
         controls: {
             matchers: {
@@ -27,8 +28,7 @@ const preview: Preview = {
                 order: ['UI', ['Header', 'Footer']],
                 locales: 'en-GB',
             }
-        }
+        },
+        tags: ['autodocs'],
     },
 };
-
-export default preview;

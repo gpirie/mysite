@@ -1,4 +1,5 @@
 <svg class="navigation-icon" id="close-icon" width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <title>Close Icon</title>
     <rect x="13.6851" y="10.8097" width="19.6688" height="3.47097" rx="1.73548" transform="rotate(45 13.6851 10.8097)" fill="#ffffff"/>
     <rect x="27.5933" y="1.85864" width="19.6688" height="3.47097" rx="1.73548" transform="rotate(135 27.5933 1.85864)" fill="#ffffff"/>
     <rect x="16.1875" y="13.264" width="19.6688" height="3.47097" rx="1.73548" transform="rotate(135 16.1875 13.264)" fill="#ffffff"/>

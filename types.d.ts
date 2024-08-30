@@ -13,7 +13,7 @@ declare module 'types' {
         label: string;
         cssClasses: string[];
         target: string | null;
-        uri: string;
+        uri: string | undefined;
         title: string | null;
     };
 }

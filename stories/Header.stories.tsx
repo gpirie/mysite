@@ -1,56 +1,31 @@
 // Imports
 import type { Meta, StoryObj } from '@storybook/react';
+import { within, userEvent, fireEvent, waitFor } from '@storybook/test';
+import { expect } from '@storybook/jest';
 
 // Components
 import Header from "@/components/header/siteHeader";
+
+// Data
+import { headerMenu } from "./data/headerMenu";
 
 // Types
 import { Menu } from 'types';
 
 // Data
-const menuData: Menu[] = [
-    {
-        id: 1,
-        label: 'Home',
-        cssClasses: [ 'home-link' ],
-        target: null,
-        uri: '/',
-    },
-    {
-        id: 2,
-        label: 'About',
-        cssClasses: [],
-        target: null,
-        uri: '/about/',
-    },
-    {
-        id: 3,
-        label: 'Experience',
-        cssClasses: [],
-        target: null,
-        uri: '/experience/',
-    },
-    {
-        id: 4,
-        label: 'Linked In',
-        cssClasses: [ 'linkedin' ],
-        target: '_blank',
-        uri: 'https://www.linkedin.com/in/graeme-pirie-08625275/',
-    },
-    {
-        id: 5,
-        label: 'GitHub',
-        cssClasses: [ 'github' ],
-        target: '_blank',
-        uri: 'https://github.com/gpirie',
-    }
-    // Add more items as needed
-];
 
 // Story config
 const meta: Meta<typeof Header> = {
     title: 'UI/Header',
     component: Header,
+    argTypes: {
+        tagline: {
+            control: 'text',
+            defaultValue: 'test'
+        },
+        title: { control: 'text' },
+        menu: { control: 'object' },
+    },
     parameters: {
         nextjs: {
             appDirectory: true,
@@ -62,6 +37,29 @@ const meta: Meta<typeof Header> = {
             default: 'light',
         },
     },
+    tags: ['autodocs'],
+    play: async ({ canvasElement }) => {
+        const canvas = within(canvasElement);
+
+        // Toggles menu state
+        const navElement = canvas.getByRole('navigation');
+
+        // Initial state
+        expect(canvas.queryByTestId('hamburger-icon')).toBeInTheDocument();
+        await waitFor(() => {
+            expect(canvas.queryByTestId('close-icon')).not.toBeInTheDocument();
+        });
+
+        // Simulate click to open menu
+        await fireEvent.click(navElement);
+        expect(canvas.queryByTestId('close-icon')).toBeInTheDocument();
+
+        // Simulate click to close menu
+        fireEvent.click(navElement);
+        await waitFor(() => {
+            expect(canvas.queryByTestId('hamburger-icon')).toBeInTheDocument();
+        });
+    }
 };
 
 export default meta;
@@ -69,5 +67,26 @@ type Story = StoryObj<typeof Header>;
 
 // Header: Default
 export const Default: Story = {
-    render: () => <Header tagline="Software Engineer" title="Graeme Pirie" menu={menuData} />,
+    args: {
+        tagline: 'Software Engineer',
+        title: 'Graeme Pirie',
+        menu: headerMenu,
+    },
 };
+
+export const WithDifferentMenu: Story = {
+    args: {
+        tagline: 'Frontend Developer',
+        title: 'Jane Doe',
+        menu: {
+            id: "2",
+            name: 'Header',
+            menuItems: {
+                nodes: [
+                    {id: "1", label: 'Portfolio', title: "Portfolio", cssClasses: [], target: null, uri: '/portfolio/'},
+                    {id: "2", label: 'Blog', title: "Blog", cssClasses: [], target: null, uri: '/blog/'},
+                ],
+            },
+        },
+    },
+}
