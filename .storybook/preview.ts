@@ -1,6 +1,4 @@
-// Imports
 import type { Preview } from "@storybook/react";
-
 import "@/styles/reset.scss";
 import "@/styles/globals.scss";
 
@@ -10,7 +8,7 @@ export const preview: Preview = {
             config: {
                 rules: [
                     {
-                        'color-contrast': {enabled: true, options: {level: 'AAA'}},
+                        'color-contrast': { enabled: true, options: { level: 'AAA' } },
                     },
                 ],
             }
@@ -30,7 +28,7 @@ export const preview: Preview = {
                 order: ['UI', ['Header', 'Footer']],
                 locales: 'en-GB',
             }
-        }
+        },
+        tags: ['autodocs'],
     },
 };
-

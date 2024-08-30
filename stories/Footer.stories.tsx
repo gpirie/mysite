@@ -26,8 +26,9 @@ const meta: Meta<typeof Footer> = {
             default: 'light',
         }
     },
+    tags: ['autodocs'],
     argTypes: {
-        title: { control: 'text' },
+        title: { control: 'text', defaultValue: 'Graeme Pirie' },
         menu: { control: 'object' },
     },
 };

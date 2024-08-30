@@ -18,6 +18,14 @@ import { Menu } from 'types';
 const meta: Meta<typeof Header> = {
     title: 'UI/Header',
     component: Header,
+    argTypes: {
+        tagline: {
+            control: 'text',
+            defaultValue: 'test'
+        },
+        title: { control: 'text' },
+        menu: { control: 'object' },
+    },
     parameters: {
         nextjs: {
             appDirectory: true,
@@ -29,11 +37,7 @@ const meta: Meta<typeof Header> = {
             default: 'light',
         },
     },
-    argTypes: {
-        tagline: { control: 'text' },
-        title: { control: 'text' },
-        menu: { control: 'object' },
-    },
+    tags: ['autodocs'],
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
 
