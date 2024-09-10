@@ -8,6 +8,11 @@ import Footer from "@/components/footer/siteFooter"
 // Functions
 import {fetchMenuByName, fetchSiteSettings} from "@/data/Data";
 
+// WordPress Styles
+import "@wordpress/block-library/build-style/common.css";
+import "@wordpress/block-library/build-style/style.css";
+import "@wordpress/block-library/build-style/theme.css";
+
 // Styles
 import "@/styles/reset.scss";
 import "@/styles/globals.scss";

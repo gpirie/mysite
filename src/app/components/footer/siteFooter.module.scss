@@ -4,7 +4,7 @@
     @include content-wrap;
 
     background-color: var(--secondary-colour);
-    color: var(--text-colour);
+    color: #fff;
     padding-bottom: 2rem;
     padding-top: 2rem;
     text-align: center;
@@ -43,6 +43,10 @@
             @include respond-to('large') {
                 margin-bottom: 0;
                 margin-left: 1rem;
+            }
+
+            a {
+                color: #fff;
             }
         }
     }

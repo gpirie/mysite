@@ -23,6 +23,7 @@
     "@storybook/jest": "^0.2.3",
     "@testing-library/user-event": "^14.5.2",
     "@types/node": "^20.14.12",
+    "@wordpress/block-library": "^9.6.1",
     "dompurify": "^3.1.6",
     "esbuild": "^0.23.1",
     "eslint-config-next": "^14.2.5",
