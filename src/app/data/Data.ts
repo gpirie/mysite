@@ -178,32 +178,50 @@ export const fetchMenuByName = async ( slug: string ) => {
     }
 }
 
-export const fetchFeaturedImage = async ( slug: string ) => {
-    const query = `
-    
-             query featuredImage($slug: ID!) {
-              post(id: $slug, idType: SLUG) {
-                featuredImage {
-                  node {
-                    sourceUrl
-                    altText
-                    title
-                    caption
-                    mediaDetails {
-                      height
-                      width
-                    }
+export const fetchFeaturedImage = async (slug: string) => {
+    const query = `    
+        query featuredImage($slug: ID!) {
+          contentNode(id: $slug, idType: URI, asPreview: false) {
+            ... on Post {
+              featuredImage {
+                node {
+                  sourceUrl
+                  altText
+                  title
+                  caption
+                  mediaDetails {
+                    height
+                    width
                   }
                 }
               }
-             }`;
+            }
+            ... on Page {
+              featuredImage {
+                node {
+                  sourceUrl
+                  altText
+                  title
+                  caption
+                  mediaDetails {
+                    height
+                    width
+                  }
+                }
+              }
+            }
+          }
+        }
+    `;
+
     try {
+        // Pass only the slug to the GraphQL function
         const data = await fetchGraphQL(query, { slug: slug });
 
-        return data?.data?.post?.featuredImage?.node;
-
+        // Handle both Post and Page featured images
+        return data?.data?.contentNode?.featuredImage?.node;
 
     } catch (error) {
-        console.error('Error fetching WordPress Event:' + slug, error);
+        console.error('Error fetching WordPress featured image for slug: ' + slug, error);
     }
-}
+};

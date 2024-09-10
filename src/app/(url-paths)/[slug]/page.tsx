@@ -10,7 +10,7 @@ const Page = async ({params}: { params: {slug: string}}) => {
 
     // Get Page data
     const pageData = await fetchSinglePage(params.slug);
-    const featuredImage = await fetchFeaturedImage(params.slug);
+    const featuredImage = await fetchFeaturedImage( params.slug );
 
     if ( ! pageData ) {
 
@@ -23,7 +23,7 @@ const Page = async ({params}: { params: {slug: string}}) => {
         <>
             <h1>{ pageData?.title }</h1>
 
-            <FeaturedImage image={featuredImage} />
+            <FeaturedImage image={featuredImage} showCaption={false} />
 
             { pageData?.content ? parseHTML(pageData?.content) : '' }
 

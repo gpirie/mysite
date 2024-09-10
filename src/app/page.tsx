@@ -16,7 +16,7 @@ const HomePage = async () => {
 
         <div className={styles['container']}>
 
-            <FeaturedImage image={featuredImage} />
+            <FeaturedImage image={featuredImage} showCaption={false} />
 
             <div className={styles['intro']}>
                 { parseHTML(pageData.content) }
