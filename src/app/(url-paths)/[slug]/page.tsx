@@ -1,5 +1,6 @@
 // Imports
 import {fetchFeaturedImage, fetchSinglePage} from "@/data/Data";
+import FeaturedImage from "@/components/featuredImage/featuredImage";
 import {parseHTML} from "@/utils/utils";
 
 // Components
@@ -22,11 +23,10 @@ const Page = async ({params}: { params: {slug: string}}) => {
         <>
             <h1>{ pageData?.title }</h1>
 
+            <FeaturedImage image={featuredImage} />
+
             { pageData?.content ? parseHTML(pageData?.content) : '' }
 
-            {
-                featuredImage?.node?.sourceUrl
-            }
         </>
     )
 }
