@@ -13,6 +13,11 @@
   margin-bottom: 2rem;
 }
 
+// Horizontal spacing between elements.
+@mixin horizontal-element-spacing {
+  gap: 2rem;
+}
+
 @mixin visuallyhidden {
   position: absolute;
   overflow: hidden;

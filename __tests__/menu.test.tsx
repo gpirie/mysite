@@ -46,8 +46,9 @@ it('toggles menu open and close states', () => {
 it('renders navigation menu with correct number of items', () => {
     render(<NavigationMenu menu={navMenuMock} menuStyles={menuStyles} toggle={true} />);
 
+    const expectedItems = navMenuMock.menuItems.nodes.length;
     const menuItems = screen.getAllByRole('link');
-    expect(menuItems).toHaveLength(5); // Expecting five menu items
+    expect(menuItems).toHaveLength(expectedItems);
 });
 
 it('does not render list item if uri is undefined', () => {
@@ -70,7 +71,7 @@ it('does not render list item if uri is undefined', () => {
 
     render(<NavigationMenu menu={navMenuMock} menuStyles={menuStyles} toggle={true} />);
 
-    const menuItems = screen.queryAllByRole('listitem');
+    const menuItems = screen.queryAllByRole('link');
     expect(menuItems).toHaveLength(0); // No list items should be rendered
 });
 

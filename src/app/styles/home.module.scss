@@ -1,0 +1,16 @@
+
+.container {
+  @import "@/styles/mixins.scss";
+  display: flex;
+  @include horizontal-element-spacing;
+
+  .intro {
+    flex: 1 0 60%;
+  }
+
+  figure {
+    display: block;
+    position: relative;
+    flex: 1 0 15%;
+  }
+}

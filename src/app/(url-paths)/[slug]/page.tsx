@@ -1,5 +1,6 @@
 // Imports
-import {fetchSinglePage} from "@/data/Data";
+import {fetchFeaturedImage, fetchSinglePage} from "@/data/Data";
+import FeaturedImage from "@/components/featuredImage/featuredImage";
 import {parseHTML} from "@/utils/utils";
 
 // Components
@@ -9,8 +10,9 @@ const Page = async ({params}: { params: {slug: string}}) => {
 
     // Get Page data
     const pageData = await fetchSinglePage(params.slug);
+    const featuredImage = await fetchFeaturedImage(params.slug);
 
-    if (!pageData) {
+    if ( ! pageData ) {
 
         return (
             <NotFound />
@@ -19,9 +21,12 @@ const Page = async ({params}: { params: {slug: string}}) => {
 
     return (
         <>
-            <h1>{pageData?.title}</h1>
+            <h1>{ pageData?.title }</h1>
+
+            <FeaturedImage image={featuredImage} />
 
             { pageData?.content ? parseHTML(pageData?.content) : '' }
+
         </>
     )
 }

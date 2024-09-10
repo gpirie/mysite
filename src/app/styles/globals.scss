@@ -8,9 +8,10 @@
     // Colours
     --primary-colour: #C502A1;
     --primary-colour-dark: #100D3B;
+    --secondary-colour: #1A1A8F;
+    --secondary-colour-dark: #28288B;
+
     --brand-colour-dark: #FD77E4;
-    --secondary-colour: #90b494;
-    --secondary-colour-dark: #102B24;
 
     // Fonts
     --font-primary: 'Tilt Warp', cursive;
@@ -18,9 +19,9 @@
 
     // Body Colours
     --body-bg: #EDEFEB;
-    --body-bg-dark: #2e2e2e;
+    --body-bg-dark: #212121;
     --text-colour: #4A4A4A;
-    --text-colour-dark: #ccc;
+    --text-colour-dark: #f9f9f9;
 
     // Type
     /* set base values */
@@ -37,6 +38,7 @@ body {
     background-color: var(--body-bg);
     color: var(--text-colour);
     font-family: var(--font-secondary);
+    line-height: 1.462;
 
     @media (prefers-color-scheme: dark) {
         background-color: var(--body-bg-dark);

@@ -131,6 +131,7 @@ export const fetchSinglePage = async ( slug: string ) => {
                         height
                         width
                       }
+                      sourceUrl
                     }
                   }
                 }
@@ -170,6 +171,36 @@ export const fetchMenuByName = async ( slug: string ) => {
         const data = await fetchGraphQL(query, { slug: slug });
 
         return data?.data?.menu;
+
+
+    } catch (error) {
+        console.error('Error fetching WordPress Event:' + slug, error);
+    }
+}
+
+export const fetchFeaturedImage = async ( slug: string ) => {
+    const query = `
+    
+             query featuredImage($slug: ID!) {
+              post(id: $slug, idType: SLUG) {
+                featuredImage {
+                  node {
+                    sourceUrl
+                    altText
+                    title
+                    caption
+                    mediaDetails {
+                      height
+                      width
+                    }
+                  }
+                }
+              }
+             }`;
+    try {
+        const data = await fetchGraphQL(query, { slug: slug });
+
+        return data?.data?.post?.featuredImage?.node;
 
 
     } catch (error) {
