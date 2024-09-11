@@ -6,7 +6,8 @@ export type Menu = {
     uri: string | null;
 }
 
-export type FeaturedImage = {
+export type objectFeaturedImage = {
+    databaseId: number;
     sourceUrl: string;
     altText: string;
     title: string;
@@ -17,4 +18,38 @@ export type FeaturedImage = {
 export type MediaDetails = {
     height: number;
     width: number;
+};
+
+// Type definition for Author
+export type Author = {
+    node: {
+        name: string; // Assuming the author node contains a 'name', adjust based on actual structure.
+    };
+};
+
+// Type definition for Category
+export type Category = {
+    node: {
+        id: string; // Each category node should have an ID.
+        name: string; // Name of the category.
+    };
+};
+
+// Type definition for Post
+export type Post = {
+    id: number;
+    databaseId: number;
+    date: string; // ISO date string
+    author: Author;
+    content: string | null;
+    excerpt: string | null;
+    featuredImage: string | null; // Could be a string or an object, adjust based on actual structure.
+    link: string;
+    slug: string;
+    title: string;
+    categories: {
+        edges: Array<{
+            node: Category;
+        }>;
+    };
 };
