@@ -10,7 +10,7 @@ const HomePage = async () => {
 
     // Get Page data
     const pageData = await fetchSinglePage('/');
-    const featuredImage = await fetchFeaturedImage('/');
+    const featuredImage = await fetchFeaturedImage(pageData.databaseId);
 
     return (
 
@@ -19,7 +19,7 @@ const HomePage = async () => {
             <FeaturedImage image={featuredImage} showCaption={false} />
 
             <div className={styles['intro']}>
-                { parseHTML(pageData.content) }
+                { parseHTML(pageData.content)}
             </div>
 
         </div>
