@@ -63,3 +63,8 @@ h1, h2, h3, h4 {
         color: var(--brand-colour-dark);
     }
 }
+
+sup {
+    font-size: .75em;
+    vertical-align: super;
+}
