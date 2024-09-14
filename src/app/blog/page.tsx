@@ -1,7 +1,7 @@
 // Imports
-import type { Metadata, ResolvingMetadata } from 'next';
+import type { Metadata } from 'next';
 import Link from "next/link";
-import {fetchAllPosts, fetchFeaturedImage, fetchSinglePage} from "@/data/Data";
+import {fetchAllPosts, fetchFeaturedImage} from "@/data/Data";
 import { Post, objectFeaturedImage } from "../types";
 import FeaturedImage from "@/components/featuredImage/featuredImage";
 import { formatDateTime, parseHTML } from "@/utils/utils";
@@ -11,18 +11,12 @@ type PostWithImage = Post & {
     featuredImage?: objectFeaturedImage; // Optional because it might be undefined initially
 };
 
-type Props = {
-    params: { slug: string }
-    searchParams: { [key: string]: string | string[] | undefined }
-}
-
 // `generateMetadata` function for dynamic metadata generation
-export async function generateMetadata( { params, searchParams }: Props, parent: ResolvingMetadata ): Promise<Metadata> {
-    const pageData = await fetchSinglePage('blog');
-
-
+export async function generateMetadata(): Promise<Metadata> {
+    
     return {
         generator: 'Next.js',
+        title: `Blog | Graeme Pirie`,
     }
 }
 

@@ -113,6 +113,8 @@ export const fetchSinglePage = async ( slug: string ) => {
              query Pages($slug: String!) {
               nodeByUri(uri: $slug) {
                 __typename
+                uri
+                isPostsPage
                 ... on Page {
                   date
                   databaseId
