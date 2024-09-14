@@ -35,6 +35,16 @@ export type Category = {
     };
 };
 
+export type SEO = {
+    metaDesc: string | null;
+    metaKeywords: string | null;
+    title: string | null;
+    breadcrumbs: {
+        text: string | null;
+        url: string | null;
+    };
+};
+
 // Type definition for Post
 export type Post = {
     id: number;
@@ -47,9 +57,11 @@ export type Post = {
     link: string;
     slug: string;
     title: string;
+    uri: string;
     categories: {
         edges: Array<{
             node: Category;
         }>;
     };
+    seo: SEO;
 };
