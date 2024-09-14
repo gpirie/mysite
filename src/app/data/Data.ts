@@ -135,6 +135,15 @@ export const fetchSinglePage = async ( slug: string ) => {
                       sourceUrl
                     }
                   }
+                  seo {
+                    metaDesc
+                    metaKeywords
+                    title
+                    breadcrumbs {
+                      text
+                      url
+                    }
+                  }
                 }
               }
              }`;
@@ -236,6 +245,7 @@ export const fetchAllPosts = async ( number: number ) => {
             { 
                 nodes {
                   id
+                  uri
                   databaseId
                   date
                   author {
@@ -274,6 +284,15 @@ export const fetchAllPosts = async ( number: number ) => {
                         name
                         slug
                       }
+                    }
+                  }
+                  seo {
+                    metaDesc
+                    metaKeywords
+                    title
+                    breadcrumbs {
+                      text
+                      url
                     }
                   }
                 }
