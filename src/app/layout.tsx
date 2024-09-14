@@ -18,7 +18,6 @@ import "@/styles/reset.scss";
 import "@/styles/globals.scss";
 import styles from "./(url-paths)/[slug]/page.module.scss";
 
-
 export async function generateMetadata(): Promise<Metadata> {
 
     // fetch data
@@ -29,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
     // Return data
     return {
-        title: sitemeta.name,
+        title: `${sitemeta.name} | ${sitemeta.description}`,
         description: sitemeta.description,
         icons: sitemeta.site_icon_url,
     }
