@@ -1,0 +1,12 @@
+// Imports
+
+.post-hero {
+
+  @import "@/styles/globals";
+
+}
+
+.first-post {
+  grid-row: span 2;
+  grid-column: 1 / 3;
+}

@@ -258,14 +258,14 @@ export const fetchAllPosts = async ( number: number ) => {
                       uri
                     }
                   }
-                  content(format: RAW)
-                  excerpt(format: RAW)
+                  content
+                  excerpt
                   featuredImage {
                     node {
                       altText
                       link
                       id
-                      description(format: RAW)
+                      description
                       mediaDetails {
                         sizes(exclude: LARGE) {
                           height
@@ -312,5 +312,51 @@ export const fetchAllPosts = async ( number: number ) => {
     } catch (error) {
         console.error('Error fetching WordPress featured image for slug: ' + number, error);
     }
+}
 
+export const fetchPostsPage = async () => {
+    const query = `
+    query {
+        generalSettings {
+            url
+        }
+        page(id: "55", idType: DATABASE_ID) {
+        title
+        uri
+        content
+        date
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+            mediaDetails {
+              width
+              height
+            }
+          }
+        }
+        seo {
+          metaDesc
+          metaKeywords
+          title
+          fullHead
+          breadcrumbs {
+            text
+            url
+          }
+        }
+        }
+        }
+    `;
+
+    try {
+        // Pass only the slug to the GraphQL function
+        const data = await fetchGraphQL(query);
+
+        // Handle both Post and Page featured images
+        return data?.data?.page;
+
+    } catch (error) {
+        console.error('Error fetching WordPress posts page');
+    }
 }

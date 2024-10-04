@@ -1,29 +1,41 @@
 // Imports
 import type { Metadata } from 'next';
-import Link from "next/link";
-import {fetchAllPosts, fetchFeaturedImage} from "@/data/Data";
+import {fetchAllPosts, fetchFeaturedImage, fetchPostsPage} from "@/data/Data";
 import { Post, objectFeaturedImage } from "../types";
-import FeaturedImage from "@/components/featuredImage/featuredImage";
-import { formatDateTime, parseHTML } from "@/utils/utils";
+import { parseHTML } from "@/utils/utils";
+import PostItem from "@/components/blog/postItem/postItem";
+import PostHero from "@/components/blog/postHero/postHero";
+
+// Styles
+import styles from "./blogPage.module.scss"
 
 // Define the PostWithImage type, extending the original Post type to include featuredImage
 type PostWithImage = Post & {
     featuredImage?: objectFeaturedImage; // Optional because it might be undefined initially
 };
 
-// `generateMetadata` function for dynamic metadata generation
 export async function generateMetadata(): Promise<Metadata> {
-    
+
+    // read route params
+    const pageData = await fetchPostsPage();
+
     return {
         generator: 'Next.js',
-        title: `Blog | Graeme Pirie`,
+        title: pageData.seo.title,
+        description: pageData.seo.metaDesc,
+        other: {
+            fullHead: pageData.seo.fullHead, // Yoast-specific full head
+        }
     }
 }
 
 
 const Blog = async () => {
+    // Fetch Posts page information
+    const blogPage = await fetchPostsPage();
+
     // Fetch all posts and their featured images on the server
-    const fetchedPosts: Post[] = await fetchAllPosts(10);
+    const fetchedPosts: Post[] = await fetchAllPosts(6);
 
     // Fetch featured images for each post
     const postsWithImages: PostWithImage[] = await Promise.all(
@@ -37,28 +49,29 @@ const Blog = async () => {
     );
 
     return (
-        <ol>
-            {postsWithImages.map((e: PostWithImage) => (
-                <li key={e.id}>
-                    <Link
-                        key={e.databaseId}
-                        href={`/blog/${e.uri}`}
-                        title={e.title}
-                    >
-                        <h1>{e.title}</h1>
+        <>
+            { blogPage?.content ? parseHTML(blogPage?.content) : '' }
 
-                        <time dateTime={e.date}>{formatDateTime(e.date, true)}</time>
-
-                        {/* Render the fetched FeaturedImage component */}
-                        {e.featuredImage && (
-                            <FeaturedImage image={e.featuredImage} showCaption={false} />
-                        )}
-
-                        {e.excerpt && parseHTML(e.excerpt)}
-                    </Link>
-                </li>
-            ))}
-        </ol>
+            <ol className={styles['post-list']}>
+                {postsWithImages.map((post, index) => {
+                    // Conditional rendering based on index
+                    if (index === 0) {
+                        // Render FeaturedPostItem for the first post (index 0)
+                        return (
+                            <PostHero className={'first-post'} key={post.id} post={post} index={index} />
+                        );
+                    } else if ( index > 0 && index <= 4 ) {
+                        return (
+                            <PostItem key={post.id} post={post} index={index} />
+                        );
+                    } else {
+                        return (
+                            <PostItem key={post.id} post={post} index={index} />
+                        );
+                    }
+                })}
+            </ol>
+        </>
     );
 };
 
