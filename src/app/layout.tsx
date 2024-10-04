@@ -2,6 +2,7 @@ import React from "react";
 import { Metadata } from 'next';
 
 // Components
+
 import Header from "@/components/header/siteHeader"
 import Footer from "@/components/footer/siteFooter"
 
@@ -18,7 +19,6 @@ import "@/styles/reset.scss";
 import "@/styles/globals.scss";
 import styles from "./(url-paths)/[slug]/page.module.scss";
 
-
 export async function generateMetadata(): Promise<Metadata> {
 
     // fetch data
@@ -29,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
     // Return data
     return {
-        title: sitemeta.name,
+        title: `${sitemeta.name} | ${sitemeta.description}`,
         description: sitemeta.description,
         icons: sitemeta.site_icon_url,
     }

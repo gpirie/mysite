@@ -1,0 +1,43 @@
+.post-list {
+
+  @import "@/styles/mixins.scss";
+
+
+
+  li {
+    margin-bottom: 1rem;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid;
+    }
+
+  }
+
+  @include respond-to('medium') {
+    display: grid;
+    gap: 2rem;
+    grid-template: repeat(2, auto) / repeat( 2, calc( 50% - 1.5rem ) );
+
+    li:last-of-type {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @include respond-to('large') {
+    grid-template: repeat(2, auto) / repeat( 3, calc( 33% - 1.5rem ) );
+
+    li:last-of-type {
+      grid-column: unset;
+      border-bottom: 1px solid;
+    }
+  }
+
+  @include respond-to('extra-large') {
+    grid-template: repeat(2, auto) / repeat( 4, calc( 25% - 1.5rem ) );
+
+    li:last-of-type {
+      border-bottom: none;
+      grid-column: 1 / -1;
+    }
+  }
+}

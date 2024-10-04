@@ -1,15 +1,15 @@
 // Imports
 import Image from 'next/image'
-import {FeaturedImage} from "../../types";
+import {objectFeaturedImage} from "../../types";
 import {parseHTML} from "@/utils/utils";
 
 // Props
 type Props = {
-    image: FeaturedImage;
+    image: objectFeaturedImage;
     showCaption: boolean;
 };
 
-const isValidImage = (image: FeaturedImage) => {
+const isValidImage = (image: objectFeaturedImage) => {
     return image && true &&
         typeof image.mediaDetails?.width === 'number' &&
         typeof image.mediaDetails?.height === 'number';
@@ -47,7 +47,7 @@ const featuredImage =  ({ image, showCaption }: Props) => {
             {
                 showCaption && image?.caption ?
                     <figcaption>
-                        { parseHTML( image.caption ) }
+                        { parseHTML(image.caption)}
                     </figcaption>
                     : ''
             }

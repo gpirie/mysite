@@ -1,4 +1,7 @@
 // Imports
+@use "sass:string";
+@use "sass:map";
+
 @import "@/styles/globals.scss";
 @import "variables";
 
@@ -27,17 +30,21 @@
 }
 
 // Handle breakpoints throughout the site.
-@mixin respond-to($breakpoint) {
-  // If the key exists in the map
-  @if map-has-key($breakpoints, $breakpoint) {
-    // Prints a media query based on the value
-    @media #{inspect(map-get($breakpoints, $breakpoint))} {
-      @content;
+@mixin respond-to($breakpoints...) {
+  $query: "";
+
+  @each $breakpoint in $breakpoints {
+
+    @if map.has-key($breakpoints-map, $breakpoint) {
+      // Add each condition with a comma separator (OR logic)
+      $query: if($query == "", string.unquote(map.get($breakpoints-map, $breakpoint)), "#{$query}, #{string.unquote(map.get($breakpoints-map, $breakpoint))}");
+    } @else {
+
+      @warn "Breakpoint `#{$breakpoint}` not found. Available breakpoints: #{map.keys($breakpoints-map)}.";
     }
   }
-  // If the key doesn't exist in the map
-  @else {
-    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+
+  @media #{$query} {
+    @content;
   }
 }

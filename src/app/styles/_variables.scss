@@ -1,4 +1,6 @@
-$breakpoints: (
-  'small':  ( max-width: 654px ),
-  'large':  ( min-width: 655px )
+$breakpoints-map: (
+  "small":  "( max-width: 654px )",
+  "medium": "( min-width: 655px )",
+  "large":  "( min-width: 1001px )",
+  "extra-large": "( min-width: 1300px )"
 ) !default;

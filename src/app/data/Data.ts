@@ -113,8 +113,11 @@ export const fetchSinglePage = async ( slug: string ) => {
              query Pages($slug: String!) {
               nodeByUri(uri: $slug) {
                 __typename
+                uri
+                isPostsPage
                 ... on Page {
                   date
+                  databaseId
                   content
                   title
                   id
@@ -132,6 +135,15 @@ export const fetchSinglePage = async ( slug: string ) => {
                         width
                       }
                       sourceUrl
+                    }
+                  }
+                  seo {
+                    metaDesc
+                    metaKeywords
+                    title
+                    breadcrumbs {
+                      text
+                      url
                     }
                   }
                 }
@@ -178,10 +190,10 @@ export const fetchMenuByName = async ( slug: string ) => {
     }
 }
 
-export const fetchFeaturedImage = async (slug: string) => {
+export const fetchFeaturedImage = async ( id: number ) => {
     const query = `    
-        query featuredImage($slug: ID!) {
-          contentNode(id: $slug, idType: URI, asPreview: false) {
+        query featuredImage($id: ID!) {
+          contentNode(id: $id, idType: DATABASE_ID) {
             ... on Post {
               featuredImage {
                 node {
@@ -216,12 +228,135 @@ export const fetchFeaturedImage = async (slug: string) => {
 
     try {
         // Pass only the slug to the GraphQL function
-        const data = await fetchGraphQL(query, { slug: slug });
+        const data = await fetchGraphQL(query, { id: id });
 
         // Handle both Post and Page featured images
         return data?.data?.contentNode?.featuredImage?.node;
 
     } catch (error) {
-        console.error('Error fetching WordPress featured image for slug: ' + slug, error);
+        console.error('Error fetching WordPress featured image for slug: ' + id, error);
     }
 };
+
+export const fetchAllPosts = async ( number: number ) => {
+    const query = `
+        query fetchAllPosts($number: Int!) {
+            posts(
+                first: $number
+            )
+            { 
+                nodes {
+                  id
+                  uri
+                  databaseId
+                  date
+                  author {
+                    node {
+                      firstName
+                      lastName
+                      slug
+                      uri
+                    }
+                  }
+                  content
+                  excerpt
+                  featuredImage {
+                    node {
+                      altText
+                      link
+                      id
+                      description
+                      mediaDetails {
+                        sizes(exclude: LARGE) {
+                          height
+                          width
+                        }
+                      }
+                      slug
+                      title
+                    }
+                  }
+                  link
+                  slug
+                  title
+                  categories {
+                    edges {
+                      node {
+                        id
+                        name
+                        slug
+                      }
+                    }
+                  }
+                  seo {
+                    metaDesc
+                    metaKeywords
+                    title
+                    breadcrumbs {
+                      text
+                      url
+                    }
+                  }
+                }
+            }
+        }
+    `;
+
+    try {
+        // Pass only the slug to the GraphQL function
+        const data = await fetchGraphQL(query, { number: number });
+
+        // Handle both Post and Page featured images
+        return data?.data?.posts?.nodes;
+
+    } catch (error) {
+        console.error('Error fetching WordPress featured image for slug: ' + number, error);
+    }
+}
+
+export const fetchPostsPage = async () => {
+    const query = `
+    query {
+        generalSettings {
+            url
+        }
+        page(id: "55", idType: DATABASE_ID) {
+        title
+        uri
+        content
+        date
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+            mediaDetails {
+              width
+              height
+            }
+          }
+        }
+        seo {
+          metaDesc
+          metaKeywords
+          title
+          fullHead
+          breadcrumbs {
+            text
+            url
+          }
+        }
+        }
+        }
+    `;
+
+    try {
+        // Pass only the slug to the GraphQL function
+        const data = await fetchGraphQL(query);
+
+        // Handle both Post and Page featured images
+        return data?.data?.page;
+
+    } catch (error) {
+        console.error('Error fetching WordPress posts page');
+    }
+}

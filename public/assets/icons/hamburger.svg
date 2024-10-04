@@ -1,6 +1,6 @@
 <svg class="navigation-icon" id="hamburger-icon" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
     <title>Menu Icon</title>
-    <path d="M19 1L1 1" stroke="#f328c1" stroke-width="2" stroke-linecap="round"/>
-    <path d="M19 9L1 9" stroke="#f328c1" stroke-width="2" stroke-linecap="round"/>
-    <path d="M19 17L1 17" stroke="#f328c1" stroke-width="2" stroke-linecap="round"/>
+    <path d="M19 1L1 1" stroke="#C502A1" stroke-width="2" stroke-linecap="round"/>
+    <path d="M19 9L1 9" stroke="#C502A1" stroke-width="2" stroke-linecap="round"/>
+    <path d="M19 17L1 17" stroke="#C502A1" stroke-width="2" stroke-linecap="round"/>
 </svg>
